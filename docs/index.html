@@ -8,6 +8,23 @@
   <style>
     html, body, #cesiumContainer { width: 100%; height: 100%; margin: 0; padding: 0; }
     
+    /* Contenedor del visor con borde */
+    #visor-wrapper {
+      position: absolute;
+      top: 80px; /* para dejar espacio al título */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      height: calc(100% - 100px);
+      border: 3px solid #0d47a1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background: white;
+    }
+
+    #cesiumContainer {width: 100%; height: 100%; } 
+
     #titulo-barrio {
     position: absolute;
     top: 20px;
@@ -30,7 +47,10 @@
 <body>
   
   <div id="titulo-barrio">Barrio Potosí</div> 
-  <div id="cesiumContainer"></div>
+
+  <div id="visor-wrapper">
+    <div id="cesiumContainer"></div>
+  </div>
 
   <script type="module">
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNzI1ZjBlNS1hNmY4LTQ0OGEtYjE5OS1hMGJiYjYzMmNhOGIiLCJpZCI6MzMxMzc2LCJpYXQiOjE3NTUwNDI2Mjd9.vMkh7Pvq2F9MhZE4H7wqPFFQs1gPKdc-Ax4q0tncRs8';
@@ -60,10 +80,12 @@
       e.polygon.outline = true;
       e.polygon.outlineColor = Cesium.Color.fromCssColorString("#0d47a1");
     }
+
+    // Centra la cámara en el barrio
     await viewer.flyTo(barrio);
-    
+
     // 2) PREDIOS: extrusión (usa 'altura' o 'pisos'; fallback 6 m)
-    // Exporta desde QGIS como EPSG:4326
+    // Exporta desde QGIS como EPSG:4326 ; Cesium trabaja en WGS84 (EPSG:4326)
 
     const predios = await Cesium.GeoJsonDataSource.load("Predios-Potosi.geojson", {
       // importante: SIN clampToGround si vas a extruir
@@ -120,6 +142,37 @@
       });
     }
     */
+
+    // 3) Cargar vías recortadas y mostrarlas; Cesium trabaja en WGS84 (EPSG:4326)
+try {
+  // Cargar el GeoJSON de vías con clampToGround para que sigan la superficie del terreno
+  const viasDataSource = await Cesium.GeoJsonDataSource.load("Vias.geojson", {
+    clampToGround: true
+  });
+  viewer.dataSources.add(viasDataSource);
+  console.log("Vías cargadas:", viasDataSource.entities.values.length, "entidades");
+
+  // Estilizar vías para que se vean bien sobre imágenes satelitales
+  viasDataSource.entities.values.forEach(entity => {
+    if (entity.polyline) {
+      // Grosor de la línea
+      entity.polyline.width = 3;
+
+      // Color principal + borde para mejorar visibilidad
+      entity.polyline.material = new Cesium.PolylineOutlineMaterialProperty({
+        color: Cesium.Color.YELLOW,
+        outlineColor: Cesium.Color.BLACK,
+        outlineWidth: 1
+      });
+
+      // Ajustar al relieve del terreno
+      entity.polyline.clampToGround = true;
+    }
+  });
+
+} catch (error) {
+  console.error("Error al cargar Vias.geojson:", error);
+}
 
     // 4) Cámara inicial manual (por si lo prefieres)
     viewer.camera.flyTo({
