@@ -1,38 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <meta charset="utf-8" />
+  <title>Cesium - Barrio Potosí</title>
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <style>
+    html, body, #cesiumContainer { width: 100%; height: 100%; margin: 0; padding: 0; }
+  </style>
 </head>
 <body>
   <div id="cesiumContainer"></div>
+
   <script type="module">
-    // Your access token can be found at: https://ion.cesium.com/tokens.
-    // Replace `your_access_token` with your Cesium ion access token.
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNzI1ZjBlNS1hNmY4LTQ0OGEtYjE5OS1hMGJiYjYzMmNhOGIiLCJpZCI6MzMxMzc2LCJpYXQiOjE3NTUwNDI2Mjd9.vMkh7Pvq2F9MhZE4H7wqPFFQs1gPKdc-Ax4q0tncRs8';
 
-    Cesium.Ion.defaultAccessToken = 'your_access_token';
-
-    // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
-    const viewer = new Cesium.Viewer('cesiumContainer', {
+    const viewer = new Cesium.Viewer("cesiumContainer", {
       terrain: Cesium.Terrain.fromWorldTerrain(),
-    });    
-    /*
-    // Fly the camera to Barrio nueva marsella en bogotá at the given longitude, latitude, and height.
-    viewer.camera.flyTo({
-      destination: Cesium.Cartesian3.fromDegrees(-74.133102, 4.626814, 3500),
-      orientation: {
-        heading: Cesium.Math.toRadians(0.0),
-        pitch: Cesium.Math.toRadians(-15.0),
-      }
+      baseLayer: Cesium.ImageryLayer.fromProviderAsync(
+        Cesium.ArcGisMapServerImageryProvider.fromBasemapType(
+          Cesium.ArcGisBaseMapType.SATELLITE
+        )
+      ),
+      timeline: false,
+      animation: false,
+      shadows: true
     });
+    viewer.scene.globe.depthTestAgainstTerrain = true;
+    
+    // 1) Capa del barrio: SOLO para ubicar/recortar (sin extrusión)
+    
+    const barrio = await Cesium.GeoJsonDataSource.load("Potosi.geojson", {
+      clampToGround: true
+    });
+    viewer.dataSources.add(barrio);
+    for (const e of barrio.entities.values) {
+      if (!e.polygon) continue;
+      e.polygon.material = Cesium.Color.fromCssColorString("#ff9800").withAlpha(0.25);
+      e.polygon.outline = true;
+      e.polygon.outlineColor = Cesium.Color.fromCssColorString("#0d47a1");
+    }
+    await viewer.flyTo(barrio);
+    
+    // 2) PREDIOS: extrusión (usa 'altura' o 'pisos'; fallback 6 m)
+    // Exporta desde QGIS como EPSG:4326
 
-    // Add Cesium OSM Buildings, a global 3D buildings layer.
-    const buildingTileset = await Cesium.createOsmBuildingsAsync();
-    viewer.scene.primitives.add(buildingTileset);   
+    const predios = await Cesium.GeoJsonDataSource.load("Predios-Potosi.geojson", {
+      // importante: SIN clampToGround si vas a extruir
+    });
+    viewer.dataSources.add(predios);
+
+    for (const e of predios.entities.values) {
+      const pol = e.polygon;
+      if (!pol) continue;
+
+      const props = e.properties || {};
+      const hasAltura = props.altura && !isNaN(+props.altura.getValue?.());
+      const hasPisos  = props.pisos  && !isNaN(+props.pisos.getValue?.());
+      const altura = hasAltura ? +props.altura.getValue()
+                    : hasPisos  ? +props.pisos.getValue() * 3   // 3 m por piso
+                                : 6;
+
+      pol.material = Cesium.Color.fromCssColorString("#9e9e9e").withAlpha(0.95);
+      pol.outline = true;
+      pol.outlineColor = Cesium.Color.BLACK;
+
+      pol.height = -5 //Base del terreno
+      pol.heightReference = Cesium.HeightReference.RELATIVE_TO_GROUND;
+      pol.extrudedHeight = altura; // en metros
+      pol.extrudedHeightReference = Cesium.HeightReference.RELATIVE_TO_GROUND;
+    }
+
     /*
+    // 3) (Opcional) Edificios OSM recortados a la zona del barrio
+    // Útil si en OSM hay huellas/alturas; si no, quizá veas pocos.
+    const osm = await Cesium.createOsmBuildingsAsync();
+    viewer.scene.primitives.add(osm);
+    
+    // Recorta OSM a la envolvente del polígono del barrio
+    // (calculamos bbox a partir del primer polígono del barrio)
+    const poly = barrio.entities.values.find(e => e.polygon)?.polygon;
+    if (poly) {
+      const positions = poly.hierarchy.getValue().positions;
+      const toDeg = (c) => {
+        const carto = Cesium.Ellipsoid.WGS84.cartesianToCartographic(c);
+        return { lon: Cesium.Math.toDegrees(carto.longitude), lat: Cesium.Math.toDegrees(carto.latitude) };
+      };
+      let west=180, south=90, east=-180, north=-90;
+      positions.map(toDeg).forEach(({lon,lat}) => {
+        west = Math.min(west, lon);
+        east = Math.max(east, lon);
+        south= Math.min(south,lat);
+        north= Math.max(north,lat);
+      });
+      const rect = Cesium.Rectangle.fromDegrees(west, south, east, north);
+      osm.clippingPlanes = Cesium.ClippingPlaneCollection.fromBoundingRectangle(rect, {
+        unionClippingRegions: true,
+        edgeWidth: 0.0
+      });
+    }
+    */
+
+    // 4) Cámara inicial manual (por si lo prefieres)
+    viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(-74.082449, 4.688547, 3000),
+      orientation: { heading: 0, pitch: Cesium.Math.toRadians(-25) }
+    });
   </script>
- </div>
 </body>
 </html>
