@@ -1,0 +1,43 @@
+html, body, #cesiumContainer { 
+  width: 100%; 
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+}
+
+/* Contenedor del visor con borde */
+#visor-wrapper {
+  position: absolute;
+  top: 80px; /* para dejar espacio al título */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: calc(100% - 100px);
+  border: 3px solid #0d47a1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  background: white;
+}
+
+#cesiumContainer {
+  width: 100%; 
+  height: 100%; 
+} 
+
+#titulo-barrio {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
