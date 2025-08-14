@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Cesium - Barrio Potosí</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barrio Potosí</title>
 
-  <!-- CesiumJS -->
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <!-- 1) Hoja de estilos -->
+  <link rel="stylesheet" href="estilos.css" />
 
-  <!-- CSS externo -->
-  <link rel="stylesheet" href="estilos.css">
+  <!-- 2) Librería Cesium -->
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.115/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.115/Build/Cesium/Cesium.js"></script>
 </head>
-<body>
-  
-  <div id="titulo-barrio">Barrio Potosí</div> 
 
-  <div id="visor-wrapper">
-    <div id="cesiumContainer"></div>
+<body>
+  <!-- 3) Recuadro con la foto -->
+  <div id="foto-barrio">
+    <h1>Barrio Potosí</h1>
+    <img src="Foto_Barrio.png" alt="Foto del Barrio Potosí">
   </div>
 
-  <!-- JS externo -->
+  <!-- 4) Recuadro con el visor -->
+  <div id="cesiumContainer"></div>
+
+  <!-- 5) Script principal -->
   <script type="module" src="programa.js"></script>
 </body>
 </html>
