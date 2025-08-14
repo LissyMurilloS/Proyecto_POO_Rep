@@ -6,26 +6,36 @@
 
   <!-- CesiumJS -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Cesium.js"></script>
-  
-  <!-- Widgets de Cesium -->
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
 
-  <!-- Fuente de Google Fonts -->
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
-  <!-- Archivo de estilos externo -->
+  <!-- Estilos -->
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <!-- Título del barrio -->
-  <div id="titulo-barrio">Barrio Potosí</div> 
 
-  <!-- Contenedor del visor con borde -->
-  <div id="visor-wrapper">
-    <div id="cesiumContainer"></div>
+  <!-- Título principal -->
+  <div id="titulo-barrio">Barrio Potosí</div>
+
+  <!-- Contenedor principal en columna -->
+  <div id="contenedor-vertical">
+    
+    <!-- Recuadro de imagen -->
+    <div id="recuadro-imagen">
+      <img src="Barrio_Potosi.PNG" alt="Vista del Barrio Potosí">
+    </div>
+
+    <!-- Recuadro del visor Cesium -->
+    <div id="recuadro-cesium">
+      <div id="cesiumContainer"></div>
+    </div>
+
   </div>
 
-  <!-- Archivo de lógica -->
+  <!-- Lógica de Cesium -->
   <script type="module" src="programa.js"></script>
+
 </body>
 </html>
