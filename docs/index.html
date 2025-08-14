@@ -3,182 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <title>Cesium - Barrio Potosí</title>
+
+  <!-- CesiumJS -->
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Cesium.js"></script>
+  
+  <!-- Widgets de Cesium -->
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
-  <style>
-    html, body, #cesiumContainer { width: 100%; height: 100%; margin: 0; padding: 0; }
-    
-    /* Contenedor del visor con borde */
-    #visor-wrapper {
-      position: absolute;
-      top: 80px; /* para dejar espacio al título */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 95%;
-      height: calc(100% - 100px);
-      border: 3px solid #0d47a1;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      background: white;
-    }
 
-    #cesiumContainer {width: 100%; height: 100%; } 
+  <!-- Fuente de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
-    #titulo-barrio {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 30px;
-    font-weight: bold;
-    color: black;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    pointer-events: none;
-  }
-
-  </style>
+  <!-- Archivo de estilos externo -->
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  
+  <!-- Título del barrio -->
   <div id="titulo-barrio">Barrio Potosí</div> 
 
+  <!-- Contenedor del visor con borde -->
   <div id="visor-wrapper">
     <div id="cesiumContainer"></div>
   </div>
 
-  <script type="module">
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNzI1ZjBlNS1hNmY4LTQ0OGEtYjE5OS1hMGJiYjYzMmNhOGIiLCJpZCI6MzMxMzc2LCJpYXQiOjE3NTUwNDI2Mjd9.vMkh7Pvq2F9MhZE4H7wqPFFQs1gPKdc-Ax4q0tncRs8';
-
-    const viewer = new Cesium.Viewer("cesiumContainer", {
-      terrain: Cesium.Terrain.fromWorldTerrain(),
-      baseLayer: Cesium.ImageryLayer.fromProviderAsync(
-        Cesium.ArcGisMapServerImageryProvider.fromBasemapType(
-          Cesium.ArcGisBaseMapType.SATELLITE
-        )
-      ),
-      timeline: false,
-      animation: false,
-      shadows: true
-    });
-    viewer.scene.globe.depthTestAgainstTerrain = true;
-    
-    // 1) Capa del barrio: SOLO para ubicar/recortar (sin extrusión)
-    
-    const barrio = await Cesium.GeoJsonDataSource.load("Potosi.geojson", {
-      clampToGround: true
-    });
-    viewer.dataSources.add(barrio);
-    for (const e of barrio.entities.values) {
-      if (!e.polygon) continue;
-      e.polygon.material = Cesium.Color.fromCssColorString("#ff9800").withAlpha(0.25);
-      e.polygon.outline = true;
-      e.polygon.outlineColor = Cesium.Color.fromCssColorString("#0d47a1");
-    }
-
-    // Centra la cámara en el barrio
-    await viewer.flyTo(barrio);
-
-    // 2) PREDIOS: extrusión (usa 'altura' o 'pisos'; fallback 6 m)
-    // Exporta desde QGIS como EPSG:4326 ; Cesium trabaja en WGS84 (EPSG:4326)
-
-    const predios = await Cesium.GeoJsonDataSource.load("Predios-Potosi.geojson", {
-      // importante: SIN clampToGround si vas a extruir
-    });
-    viewer.dataSources.add(predios);
-
-    for (const e of predios.entities.values) {
-      const pol = e.polygon;
-      if (!pol) continue;
-
-      const props = e.properties || {};
-      const hasAltura = props.altura && !isNaN(+props.altura.getValue?.());
-      const hasPisos  = props.pisos  && !isNaN(+props.pisos.getValue?.());
-      const altura = hasAltura ? +props.altura.getValue()
-                    : hasPisos  ? +props.pisos.getValue() * 3   // 3 m por piso
-                                : 6;
-
-      pol.material = Cesium.Color.fromCssColorString("#9e9e9e").withAlpha(0.95);
-      pol.outline = true;
-      pol.outlineColor = Cesium.Color.BLACK;
-
-      pol.height = 0 //Base del terreno
-      pol.heightReference = Cesium.HeightReference.RELATIVE_TO_GROUND;
-      pol.extrudedHeight = altura; // en metros
-      pol.extrudedHeightReference = Cesium.HeightReference.RELATIVE_TO_GROUND;
-    }
-
-    /*
-    // 3) (Opcional) Edificios OSM recortados a la zona del barrio
-    // Útil si en OSM hay huellas/alturas; si no, quizá veas pocos.
-    const osm = await Cesium.createOsmBuildingsAsync();
-    viewer.scene.primitives.add(osm);
-    
-    // Recorta OSM a la envolvente del polígono del barrio
-    // (calculamos bbox a partir del primer polígono del barrio)
-    const poly = barrio.entities.values.find(e => e.polygon)?.polygon;
-    if (poly) {
-      const positions = poly.hierarchy.getValue().positions;
-      const toDeg = (c) => {
-        const carto = Cesium.Ellipsoid.WGS84.cartesianToCartographic(c);
-        return { lon: Cesium.Math.toDegrees(carto.longitude), lat: Cesium.Math.toDegrees(carto.latitude) };
-      };
-      let west=180, south=90, east=-180, north=-90;
-      positions.map(toDeg).forEach(({lon,lat}) => {
-        west = Math.min(west, lon);
-        east = Math.max(east, lon);
-        south= Math.min(south,lat);
-        north= Math.max(north,lat);
-      });
-      const rect = Cesium.Rectangle.fromDegrees(west, south, east, north);
-      osm.clippingPlanes = Cesium.ClippingPlaneCollection.fromBoundingRectangle(rect, {
-        unionClippingRegions: true,
-        edgeWidth: 0.0
-      });
-    }
-    */
-
-    // 3) Cargar vías recortadas y mostrarlas; Cesium trabaja en WGS84 (EPSG:4326)
-try {
-  // Cargar el GeoJSON de vías con clampToGround para que sigan la superficie del terreno
-  const viasDataSource = await Cesium.GeoJsonDataSource.load("Vias.geojson", {
-    clampToGround: true
-  });
-  viewer.dataSources.add(viasDataSource);
-  console.log("Vías cargadas:", viasDataSource.entities.values.length, "entidades");
-
-  // Estilizar vías para que se vean bien sobre imágenes satelitales
-  viasDataSource.entities.values.forEach(entity => {
-    if (entity.polyline) {
-      // Grosor de la línea
-      entity.polyline.width = 3;
-
-      // Color principal + borde para mejorar visibilidad
-      entity.polyline.material = new Cesium.PolylineOutlineMaterialProperty({
-        color: Cesium.Color.YELLOW,
-        outlineColor: Cesium.Color.BLACK,
-        outlineWidth: 1
-      });
-
-      // Ajustar al relieve del terreno
-      entity.polyline.clampToGround = true;
-    }
-  });
-
-} catch (error) {
-  console.error("Error al cargar Vias.geojson:", error);
-}
-
-    // 4) Cámara inicial manual (por si lo prefieres)
-    viewer.camera.flyTo({
-      destination: Cesium.Cartesian3.fromDegrees(-74.082449, 4.688547, 3000),
-      orientation: { heading: 0, pitch: Cesium.Math.toRadians(-25) }
-    });
-  </script>
+  <!-- Archivo de lógica -->
+  <script type="module" src="programa.js"></script>
 </body>
 </html>
