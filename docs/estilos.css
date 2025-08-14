@@ -45,8 +45,8 @@ html, body {
 /* Recuadro de la imagen */
 #recuadro-imagen {
   width: 100%;
-  height: 40%;          /* 40% del espacio vertical */
-  border: 3px solid #0d47a1;
+  height: 60%;          /* 40% del espacio vertical */
+  border: 3px solid #000000  /* Negro */;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -64,7 +64,7 @@ html, body {
 #recuadro-cesium {
   width: 100%;
   height: 60%;          /* 60% del espacio vertical */
-  border: 3px solid #0d47a1;
+  border: 3px solid #000000  /* Negro */;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
