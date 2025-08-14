@@ -12,18 +12,21 @@ html, body {
 #titulo-barrio {
   position: absolute;
   top: 10px;
-  left: 48%;
+  left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0); /* Color del fondo del título */
-  padding: 20px 30px;
+  padding: 15px 30px;
   border-radius: 8px;
-  font-size: 90px;
+  font-size: 150px;
   font-weight: bold;
   color: #ffffff9d;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   pointer-events: none;
-  text-align: center;
+   text-align: center;
+  white-space: nowrap;     /* Evita que se divida en líneas */
+  overflow: hidden;        /* Oculta desbordamiento si es muy largo */
+  max-width: 100%;         /* Ajuste seguro */
   border: 1px solid #ffffff00;
 }
 
