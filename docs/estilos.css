@@ -11,20 +11,20 @@ html, body {
 /* Título del barrio */
 #titulo-barrio {
   position: absolute;
-  top: 20px;
-  left: 50%;
+  top: 10px;
+  left: 48%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0); /* Color del fondo del título */
+  padding: 20px 30px;
   border-radius: 8px;
-  font-size: 30px;
+  font-size: 90px;
   font-weight: bold;
-  color: #1a1a1a;
+  color: #ffffff9d;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   pointer-events: none;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff00;
 }
 
 /* Contenedor vertical: imagen arriba, Cesium abajo */
