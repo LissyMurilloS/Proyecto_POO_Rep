@@ -1,29 +1,11 @@
-/* Reset y contenedor principal */
-html, body, #cesiumContainer {
+/* Reset general */
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-/* Contenedor del visor con borde */
-#visor-wrapper {
-  position: absolute;
-  top: 80px; /* para dejar espacio al título */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95%;
-  height: calc(100% - 100px);
-  border: 3px solid #0d47a1;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  background: white;
-}
-
-#cesiumContainer {
-  width: 100%;
-  height: 100%;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #f0f0f0;
 }
 
 /* Título del barrio */
@@ -32,14 +14,71 @@ html, body, #cesiumContainer {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   padding: 10px 20px;
-  border-radius: 6px;
-  font-family: 'Montserrat', Arial, sans-serif;
+  border-radius: 8px;
   font-size: 30px;
   font-weight: bold;
-  color: black;
+  color: #1a1a1a;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   pointer-events: none;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+/* Contenedor vertical: imagen arriba, Cesium abajo */
+#contenedor-vertical {
+  position: absolute;
+  top: 80px;           /* debajo del título */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: calc(100% - 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* Recuadro de la imagen */
+#recuadro-imagen {
+  width: 100%;
+  height: 40%;          /* 40% del espacio vertical */
+  border: 3px solid #0d47a1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: white;
+}
+
+#recuadro-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Ajusta sin deformar */
+  display: block;
+}
+
+/* Recuadro del visor Cesium */
+#recuadro-cesium {
+  width: 100%;
+  height: 60%;          /* 60% del espacio vertical */
+  border: 3px solid #0d47a1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: white;
+}
+
+#cesiumContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Responsive: Pantallas pequeñas */
+@media (max-height: 700px) {
+  #recuadro-imagen { height: 50%; }
+  #recuadro-cesium { height: 50%; }
 }
