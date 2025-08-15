@@ -5,7 +5,8 @@
    - Añade la variable --inicio-bg para controlar el fondo de la sección inicial.
    - Comentarios claros para localizar cambios (colores, tamaños, tipografía).
    ========================================================================= */
-
+/* Importar la tipografía Delius desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
 /* -----------------------
    VARIABLES GLOBALES
    Cambia los valores aquí para modificar rápidamente el estilo global.
@@ -43,8 +44,11 @@
   --title-size: 50px;
 
   /* Tipografía principal del sitio */
-  --main-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /*--main-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
+    --main-font: "Delius", cursive;
 }
+
+
 
 /* -----------------------
    RESET / BASE
