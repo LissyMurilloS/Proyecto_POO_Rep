@@ -45,7 +45,7 @@ const parques = [
   {
     coords: [4.696923682081576, -74.08265058115799],
     nombre: 'Parque Central Pontevedra',
-    imagen: img='img/central-pontevedra.jpg'
+    imagen: img='img/Ppontevedra.jpg'
   },
   {
     coords: [4.6956940082946925, -74.08261839464893],
@@ -105,6 +105,7 @@ fetch("potosi.geojson")
         mostrarInfo(`
           <p><strong>Nombre del parque:</strong><br>${p.nombre}</p>
           <p><strong>Coordenadas:</strong><br>${p.coords[0].toFixed(6)}, ${p.coords[1].toFixed(6)}</p>
+          <p><strong>Imagen:</strong><br><img src='${p.imagen}'/></p>
         `);
       });
       return m;

@@ -1,3 +1,26 @@
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    font-family: Arial, Helvetica, sans-serif;  
+}
+
+img {
+  max-width: 70%; /* Asegura que las imágenes no excedan el ancho del contenedor */
+  height: auto;    /* Mantiene la proporción de la imagen */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para un efecto visual */
+  display: block; /* Elimina el espacio inferior en imágenes dentro de contenedores */
+  margin: 10px auto; /* Centra las imágenes y agrega espacio */
+}
+
 /* MAPA (70%) | PANEL (30%) */
 .layout{
   display: grid;
