@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubicación - Mi barrio: Potosí</title>
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="./estilos.css" />
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
+  <!-- Estilos específicos de ubicación -->
+  <link rel="stylesheet" href="./estilosU.css" />
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li><a href="#">Movilidad</a></li>
+          <li><a href="#">Troncales</a></li>
+          <li><a href="#">Parques</a></li>
+          <li><a href="vias.html">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="#">Por definir</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li><a href="ubicacion.html" class="menu-link-active">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="#">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL - SECCIÓN DE UBICACIÓN -->
+  <main class="contenido-principal">
+    <!-- Introducción a la sección -->
+    <section class="intro-ubicacion">
+      <h2>Ubicación Geográfica del Barrio Potosí</h2>
+      <p>
+        El barrio Potosí se encuentra ubicado en la localidad de Suba, al norte de Bogotá D.C. 
+        Esta sección presenta un mapa interactivo que muestra la ubicación exacta del barrio 
+        dentro del contexto de las localidades de la capital colombiana.
+      </p>
+      <p>
+        El mapa incluye una animación de acercamiento progresivo que va desde una vista general 
+        de Bogotá hasta el enfoque específico en el barrio Potosí, facilitando la comprensión 
+        de su ubicación geográfica y contexto urbano.
+      </p>
+    </section>
+
+    <!-- Mapa de ubicación -->
+    <section class="seccion-mapa">
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+      
+      <!-- Controles del mapa -->
+      <div class="controles-mapa">
+        <button id="btn-abrir-info" class="btn-info">
+          📍 Mostrar información del barrio
+        </button>
+        <button id="btn-reset-vista" class="btn-reset">
+          🔄 Reiniciar animación
+        </button>
+      </div>
+    </section>
+
+    <!-- Información adicional -->
+    <section class="info-adicional">
+      <div class="datos-barrio">
+        <h3>Datos del Barrio Potosí</h3>
+        <div class="datos-grid">
+          <div class="dato-item">
+            <strong>Localidad:</strong>
+            <span>Suba</span>
+          </div>
+          <div class="dato-item">
+            <strong>UPZ:</strong>
+            <span>La Alhambra</span>
+          </div>
+          <div class="dato-item">
+            <strong>Estrato:</strong>
+            <span>2-3</span>
+          </div>
+          <div class="dato-item">
+            <strong>Zona:</strong>
+            <span>Norte de Bogotá</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="./proyectoU.js"></script>
+
+</body>
+</html>

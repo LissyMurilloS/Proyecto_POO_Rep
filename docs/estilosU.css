@@ -1,0 +1,272 @@
+/* ==========================================================================
+   estilosU.css - Estilos específicos para la sección de UBICACIÓN
+   Integra con el diseño principal manteniendo coherencia visual
+   ========================================================================== */
+
+/* CONTENIDO PRINCIPAL */
+.contenido-principal {
+  margin-top: calc(var(--menu-h) * 3); /* Espacio para header + navbar */
+  padding: 30px 0;
+  min-height: calc(100vh - calc(var(--menu-h) * 3));
+}
+
+/* INTRODUCCIÓN A LA SECCIÓN */
+.intro-ubicacion {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+  text-align: center;
+  font-family: var(--main-font);
+}
+
+.intro-ubicacion h2 {
+  font-size: 2.5rem;
+  color: var(--menu-bg);
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.intro-ubicacion p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--title-color);
+  margin-bottom: 15px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* SECCIÓN DEL MAPA */
+.seccion-mapa {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 30px;
+  background: var(--inicio-bg);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  font-family: var(--main-font);
+}
+
+/* Contenedor del mapa */
+.map-container {
+  width: 100%;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+  background: #f8f9fa;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* CONTROLES DEL MAPA */
+.controles-mapa {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-info, .btn-reset {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-info {
+  background: var(--menu-bg);
+  color: white;
+}
+
+.btn-info:hover {
+  background: var(--menu-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 141, 130, 0.3);
+}
+
+.btn-reset {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-reset:hover {
+  background: #545b62;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* INFORMACIÓN ADICIONAL */
+.info-adicional {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.datos-barrio {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: var(--main-font);
+}
+
+.datos-barrio h3 {
+  color: var(--menu-bg);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dato-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: var(--inicio-bg);
+  border-radius: 8px;
+  border-left: 4px solid var(--menu-bg);
+}
+
+.dato-item strong {
+  color: var(--title-color);
+  font-weight: 700;
+}
+
+.dato-item span {
+  color: var(--menu-bg);
+  font-weight: 600;
+}
+
+/* ESTILO DEL RECUADRO INFORMATIVO (control de Leaflet) */
+.info-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: var(--main-font);
+  max-width: 320px;
+  line-height: 1.6;
+  border: 2px solid var(--menu-bg);
+}
+
+.info-box h3 {
+  margin-top: 0;
+  color: var(--menu-bg);
+  border-bottom: 2px solid var(--menu-bg);
+  padding-bottom: 8px;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.info-box p {
+  margin: 10px 0;
+  color: var(--title-color);
+  font-size: 15px;
+}
+
+.info-box button {
+  background-color: var(--menu-bg);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: var(--main-font);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.info-box button:hover {
+  background-color: var(--menu-bg-hover);
+  transform: translateY(-1px);
+}
+
+/* INDICADOR DE PÁGINA ACTIVA EN EL MENÚ */
+.menu-link-active {
+  background: var(--menu-bg-hover) !important;
+  border-radius: 4px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .contenido-principal {
+    padding: 20px 0;
+  }
+  
+  .intro-ubicacion h2 {
+    font-size: 2rem;
+  }
+  
+  .intro-ubicacion p {
+    font-size: 1.1rem;
+  }
+  
+  .seccion-mapa {
+    width: 95%;
+    padding: 20px;
+  }
+  
+  .map-container {
+    height: 400px;
+  }
+  
+  .controles-mapa {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-info, .btn-reset {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .datos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-box {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-ubicacion h2 {
+    font-size: 1.8rem;
+  }
+  
+  .seccion-mapa {
+    padding: 15px;
+  }
+  
+  .datos-barrio {
+    padding: 20px;
+  }
+  
+  .dato-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
