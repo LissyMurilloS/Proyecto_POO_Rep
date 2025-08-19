@@ -39,9 +39,9 @@ function agregarCampo(label, valor) {
 }
 
 // --- 2. CARGAR EL BARRIO ---
-fetch('potosi.geojson')
+fetch('potosi.geojson') 
   .then(response => {
-    if (!response.ok) throw new Error('Error cargando potosi.geojson');
+    if (!response.ok) throw new Error('Error cargando potosi.geojson: ' + response.status);
     return response.json();
   })
   .then(data => {
@@ -71,9 +71,9 @@ fetch('potosi.geojson')
 
 // Función para cargar las vías
 function cargarVias() {
-  fetch('Vias.geojson')
+  fetch('Vias.geojson') // Asegúrate de que el archivo exista y se llame así
     .then(response => {
-      if (!response.ok) throw new Error('Error cargando Vias.geojson');
+      if (!response.ok) throw new Error('Error cargando Vias.geojson: ' + response.status);
       return response.json();
     })
     .then(data => {
