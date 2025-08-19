@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movilidad en el Barrio Potosí</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Estilos globales del proyecto final -->
+  <link rel="stylesheet" href="estilos.css" />
+
+  <!-- Estilos específicos de movilidad -->
+  <link rel="stylesheet" href="estilosM.css" />
+
+  <!-- Estilo local para integración visual -->
+  <style>
+    /* Asegurar fuente y color del proyecto final */
+    body {
+      font-family: "Delius", cursive;
+      color: var(--title-color);
+      background: var(--page-bg, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sección de texto arriba */
+    .intro-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.3rem;
+    }
+
+    .intro-section h2 {
+      font-size: 2.5rem;
+      color: var(--title-color);
+      margin-bottom: 20px;
+    }
+
+    .intro-section p {
+      margin-bottom: 15px;
+    }
+
+    /* Contenedor del mapa */
+    .map-container {
+      width: 90%;
+      max-width: 1200px;
+      height: 600px;
+      margin: 20px auto;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sección de texto arriba -->
+  <section class="intro-section">
+  <h2>Movilidad en el Barrio Potosí, Suba</h2>
+  <p>
+    Este mapa interactivo muestra los paraderos del Sistema Integrado de Transporte Público (SITP) en el barrio Potosí, Suba.
+  </p>
+  <p>
+    Este mapa utiliza <strong>Leaflet</strong>, la biblioteca JavaScript más popular para mapas interactivos, diseñada con enfoque en simplicidad, rendimiento y experiencia de usuario.
+  </p>
+  <p>
+    Con apenas <strong>42 KB</strong>, Leaflet ofrece todo lo necesario: capas de teselas, marcadores interactivos, popups con contenido personalizado y soporte nativo para GeoJSON, además de funcionar perfectamente en dispositivos móviles.
+  </p>
+  <p>
+    En este proyecto, cada paradero del SITP se representa con un ícono de autobús (🚌), y al hacer clic se muestra información detallada junto con una <strong>imagen real del paradero</strong>, enriqueciendo la experiencia visual y comunitaria del mapa.
+  </p>
+</section>
+
+  <!-- Mapa debajo del texto -->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Turf.js para operaciones geoespaciales -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+  <!-- Tu JS -->
+  <script src="proyectoM.js"></script>
+</body>
+</html>
