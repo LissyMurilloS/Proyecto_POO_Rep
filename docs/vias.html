@@ -100,12 +100,11 @@
     <p>
       Leaflet, con solo <strong>42 KB</strong>, incluye todas las funciones esenciales: capas de teselas, marcadores, popups, GeoJSON y soporte para dispositivos móviles con arrastre, pinch-zoom y animaciones suaves.
     </p>
+
     <p>
-      Las vías se cargan desde el conjunto de datos <em>Malla Vial Integral de Bogotá</em> y se filtran para mostrar solo las que intersectan el barrio, garantizando precisión y relevancia.
+      Así se crea un marcador con popup en Leaflet. En este proyecto, se usan múltiples marcadores para representar las intersecciones de las vías dentro del barrio.
     </p>
-    <p>
-      Cada intersección está marcada con el marcador por defecto de Leaflet (●), y al hacer clic se muestra información clave: tipo de vía, etiqueta, nombre, latitud y longitud.
-    </p>
+  </section>
 
   <!-- Mapa debajo del texto -->
   <div class="map-container">
@@ -114,9 +113,6 @@
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- Turf.js para operaciones geoespaciales -->
-  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
   <!-- Tu JS -->
   <script src="proyectoV.js"></script>
