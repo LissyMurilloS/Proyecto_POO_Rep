@@ -70,7 +70,7 @@ async function cargarDatos() {
     }
 
     // Cargar barrio Potosí
-    const barrioResponse = await fetch("potosi.geojson");
+    const barrioResponse = await fetch("Potosi.geojson");
     if (!barrioResponse.ok) {
       throw new Error(`Error al cargar barrio: ${barrioResponse.status}`);
     }
