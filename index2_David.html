@@ -2,59 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Cesium - Prueba mínima</title>
-
-  <!-- Alternativa de CDN estable (evitar bloqueos a cesium.com) -->
+  <title>Visor Cesium – Potosí</title>
   <link rel="stylesheet" href="https://unpkg.com/cesium@1.132.0/Build/Cesium/Widgets/widgets.css">
   <style>
-    html, body { height: 100%; margin: 0; }
-    #cesiumContainer { width: 100%; height: 100vh; }
+    html, body { height:100%; margin:0; overflow:hidden; }
+    #cesiumContainer{ width:100%; height:100vh; outline:none; }
+    #hud{ position:fixed; top:8px; left:8px; background:rgba(0,0,0,.55); color:#fff; 
+          font:12px/1.35 system-ui,-apple-system,Segoe UI,Roboto; padding:6px 8px; border-radius:8px; z-index:10; }
   </style>
 </head>
 <body>
   <div id="cesiumContainer"></div>
+  <div id="hud">Listo</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/cesium@1.132.0/Build/Cesium/Cesium.js"></script>
-  <script src="programa2.js"></script>
-<script>
-  // 1) Crea el viewer SIN usar Ion
-  const viewer = new Cesium.Viewer("cesiumContainer", {
-    animation: false,
-    timeline: false,
-    baseLayerPicker: false,
-    geocoder: false,
-    sceneModePicker: true,
-    homeButton: true,
-    fullscreenButton: true,
-    // Terreno plano (sin Ion)
-    terrainProvider: new Cesium.EllipsoidTerrainProvider(),
-    shadows: false,
-    scene3DOnly: true,
-  });
-
-  // 2) Quitar cualquier capa base por defecto (Ion)
-  viewer.imageryLayers.removeAll();
-
-  // 3) Agregar OSM directamente (no requiere token)
-  const osm = new Cesium.UrlTemplateImageryProvider({
-    url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    credit: "© OpenStreetMap"
-  });
-  viewer.imageryLayers.addImageryProvider(osm);
-
-  // (opcional) Oculta el crédito de ion si molesta visualmente
-  // viewer._cesiumWidget._creditContainer.style.display = "none";
-
-  // 4) Centrar Bogotá
-  viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(-74.0721, 4.7110, 2000),
-    orientation: { pitch: Cesium.Math.toRadians(-35) },
-    duration: 1.2
-  });
-</script>
-
-<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-<script src="programa2.js"></script>
-
+  <script>window.CESIUM_BASE_URL='https://unpkg.com/cesium@1.132.0/Build/Cesium/';</script>
+  <script src="https://unpkg.com/cesium@1.132.0/Build/Cesium/Cesium.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+  <script src="./Programa2.js"></script>
 </body>
 </html>
