@@ -249,35 +249,15 @@ header.topbar {
 }
 
 /* =======================
-   AJUSTES SOLICITADOS (Mockup v2)
+   Cards en sección de información de interés
    ======================= */
-
-/* Reforzamos el hero para que acepte una altura fija desde JS */
-.barrio-hero {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #000;
-}
-
-/* La imagen ocupa 100% del contenedor y se recorta si es necesario */
-.barrio-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Franja verde con 80% de opacidad (mismo tono del menú) */
 .franja-verde {
   width: 100%;
   height: calc(var(--menu-h) / 2);
-  background: rgba(13, 141, 130, 0.8);
+  background: rgba(13, 141, 130, 0.8); /* mismo tono del menú con 80% */
 }
 
-/* Sección “Información de interés” con fondo de la barra inicial */
 .info-interes {
-  min-height: 200px;
   width: 100%;
   background: var(--inicio-bg);
   border-top: 1px solid var(--border);
@@ -288,34 +268,55 @@ header.topbar {
 .info-interes .wrap {
   max-width: 1100px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
 }
 
 .info-interes h2 {
-  margin: 0 0 10px 0;
+  margin: 0 0 18px 0;
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 800;
   color: var(--title-color);
+  text-align: center;
 }
 
-.info-interes h3 {
-  margin: 16px 0 8px 0;
-  font-size: clamp(18px, 2.4vw, 22px);
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
-.info-interes p, .info-interes li {
+@media (max-width: 1100px) {
+  .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--menu-bg);
+  color: var(--text-on-menu);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-size: clamp(18px, 2.5vw, 22px);
+}
+
+.card p, .card li {
   line-height: 1.6;
   margin: 0.2rem 0;
 }
 
-.info-interes ul {
+.card ul {
   padding-left: 18px;
   margin: 0.2rem 0 0.6rem 0;
 }
 
-/* Franja final de copyright (misma altura del menú) */
+/* Footer franja (por si no existía) */
 .footer-copy {
   width: 100%;
   height: var(--menu-h);
@@ -326,168 +327,4 @@ header.topbar {
   justify-content: center;
   font-weight: 600;
   border-top: 1px solid var(--border);
-}
-
-
-/* =======================
-   INFO-INTERES: Accordions + Layout 2 columnas
-   ======================= */
-
-/* Grid de 2 columnas: contenido (2fr) + aside mapa (1fr) en pantallas amplias */
-.info-interes .wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-}
-
-/* Columna de texto/accordions */
-.info-contenido {
-  display: grid;
-  gap: 12px;
-}
-
-/* Accordions con <details>/<summary> (accesibles y sin JS) */
-.info-accordion details {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
-  overflow: hidden;
-}
-
-.info-accordion summary {
-  cursor: pointer;
-  list-style: none;
-  padding: 14px 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.info-accordion summary::-webkit-details-marker { display: none; }
-
-/* Indicador visual (triángulo) */
-.info-accordion summary::after {
-  content: "▸";
-  transition: transform 0.2s ease;
-  font-size: 18px;
-}
-
-.info-accordion details[open] summary::after {
-  transform: rotate(90deg);
-}
-
-.info-accordion .panel {
-  padding: 0 16px 14px 16px;
-  border-top: 1px solid var(--border);
-}
-
-/* Mini-mapa como "card" en el aside */
-.info-aside {
-  display: grid;
-  gap: 12px;
-  align-content: start;
-}
-
-.card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.card .card-header {
-  padding: 12px 14px;
-  font-weight: 700;
-  border-bottom: 1px solid var(--border);
-}
-
-.card .card-body {
-  padding: 0;
-}
-
-.mini-mapa iframe {
-  display: block;
-  width: 100%;
-  height: 280px;
-  border: 0;
-}
-
-/* Responsive: en pantallas pequeñas, 1 columna */
-@media (max-width: 900px) {
-  .info-interes .wrap {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Layout 2 columnas para info + mapa */
-.info-interes .wrap.info-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .info-interes .wrap.info-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Estilos de acordeones (details) como cards */
-.acordeon details {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 8px 12px;
-}
-
-.acordeon details + details {
-  margin-top: 10px;
-}
-
-.acordeon summary {
-  cursor: pointer;
-  font-weight: 700;
-  outline: none;
-  list-style: none;
-}
-
-.acordeon summary::-webkit-details-marker { display: none; }
-
-.acordeon summary::after {
-  content: "▸";
-  float: right;
-  transform: rotate(0deg);
-  transition: transform .2s ease;
-}
-
-details[open] > summary::after { transform: rotate(90deg); }
-
-.acordeon .content {
-  margin-top: 6px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--border);
-}
-
-/* Card del minimapa */
-.mini-mapa {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px;
-}
-
-.mini-mapa h3 {
-  margin: 0 0 8px;
-}
-
-.mini-mapa iframe {
-  width: 100%;
-  height: 280px;
-  border: 0;
-  border-radius: 8px;
 }

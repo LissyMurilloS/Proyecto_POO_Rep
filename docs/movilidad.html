@@ -3,93 +3,284 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movilidad en el Barrio Potosí</title>
+  <title>Movilidad - Mi Barrio: Potosí</title>
 
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="./estilos.css" />
+  
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-  <!-- Estilos globales del proyecto final -->
-  <link rel="stylesheet" href="estilos.css" />
-
+  
   <!-- Estilos específicos de movilidad -->
-  <link rel="stylesheet" href="estilosM.css" />
+  <link rel="stylesheet" href="./estilosM.css" />
 
-  <!-- Estilo local para integración visual -->
+  <!-- Estilos de integración para mantener consistencia visual -->
   <style>
-    body {
-      font-family: "Delius", cursive;
-      color: var(--title-color);
-      background: var(--page-bg, #ffffff);
-      margin: 0;
-      padding: 0;
+    /* Contenido principal con espaciado consistente */
+    .contenido-principal {
+      margin-top: calc(var(--menu-h) * 0.5);
+      padding: 20px 0;
+      min-height: calc(100vh - calc(var(--menu-h) * 3.5));
+      background: var(--page-bg);
     }
 
-    .intro-section {
+    /* Hero section */
+    .hero-movilidad {
       width: 90%;
       max-width: 1200px;
-      margin: 30px auto;
+      margin: 20px auto 30px auto;
       padding: 0 20px;
       text-align: center;
-      line-height: 1.8;
-      font-size: 1.3rem;
+      font-family: var(--main-font);
     }
 
-    .intro-section h2 {
-      font-size: 2.5rem;
-      color: var(--title-color);
-      margin-bottom: 20px;
-    }
-
-    .intro-section p {
+    .hero-movilidad h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: var(--menu-bg);
       margin-bottom: 15px;
+      font-weight: 800;
     }
 
-    .map-container {
+    .hero-movilidad .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      line-height: 1.6;
+      color: var(--title-color);
+      margin-bottom: 15px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Sección del mapa */
+    .seccion-mapa {
       width: 90%;
       max-width: 1200px;
+      margin: 0 auto 40px auto;
+      padding: 30px;
+      background: var(--inicio-bg);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      font-family: var(--main-font);
+    }
+
+    /* Contenedor del mapa actualizado */
+    .map-container {
+      width: 100%;
       height: 600px;
-      margin: 20px auto;
-      border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      margin-bottom: 0;
+      background: #f8f9fa;
     }
 
     #map {
       width: 100%;
       height: 100%;
+      position: relative;
+    }
+
+    /* Información técnica */
+    .info-tecnica {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 30px;
+      background: rgba(13, 141, 130, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      font-family: var(--main-font);
+      text-align: center;
+      color: var(--text-on-menu);
+    }
+
+    .info-tecnica h3 {
+      color: var(--text-on-menu);
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+
+    .info-tecnica p {
+      color: var(--text-on-menu);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .caracteristicas-mapa {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .caracteristicas-mapa h4 {
+      color: var(--text-on-menu);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .caracteristicas-mapa ul {
+      color: var(--text-on-menu);
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .caracteristicas-mapa li {
+      color: var(--text-on-menu);
+      margin-bottom: 8px;
+    }
+
+    /* Leyenda personalizada */
+    .info.legend {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      font-family: var(--main-font);
+      color: var(--title-color);
+      font-size: 14px;
+      line-height: 1.8;
+      border: 2px solid var(--menu-bg);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contenido-principal {
+        padding: 15px 0;
+      }
+      
+      .seccion-mapa {
+        width: 95%;
+        padding: 20px;
+      }
+      
+      .map-container {
+        height: 400px;
+      }
+      
+      .info-tecnica {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+
+    /* Indicador de página activa en el menú */
+    .menu-link-active {
+      background: var(--menu-bg-hover) !important;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <!-- Sección de texto arriba -->
-  <section class="intro-section">
-    <h2>Movilidad en el Barrio Potosí, Suba</h2>
-    <p>
-      Este mapa interactivo muestra los <strong>paraderos del Sistema Integrado de Transporte Público (SITP)</strong> ubicados dentro del barrio Potosí, Suba.
-    </p>
-    <p>
-      Cada paradero se representa con un ícono de autobús (🚌) y, al hacer clic, se muestra información detallada: nombre, dirección, código de cenefa, rutas del SITP que pasan por ahí y una <strong>imagen real del paradero</strong>.
-    </p>
-    <p>
-      Las <strong>rutas del SITP</strong> se muestran como líneas segmentadas en gris, basadas en datos oficiales del sistema de transporte urbano.
-    </p>
-    <p>
-      Esta visualización combina datos geoespaciales, fotografías y convenciones cartográficas para ofrecer una experiencia clara y comunitaria del sistema de movilidad en el barrio.
-    </p>
-  </section>
 
-  <div class="map-container">
-    <div id="map"></div>
-  </div>
+  <!-- CABECERA PRINCIPAL -->
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
 
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="movilidad.html" class="menu-link menu-link-active">Movilidad</a></li>
+          <li class="menu-item"><a href="interes.html" class="menu-link">Sitios de interés</a></li>
+          <li class="menu-item"><a href="troncales.html" class="menu-link">Troncales</a></li>
+          <li class="menu-item"><a href="index_David.html" class="menu-link">Parques</a></li>
+          <li class="menu-item"><a href="vias.html" class="menu-link">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="CalidadAire.html">Calidad del aire</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="ubicacion.html" class="menu-link">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="index2_David.html">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="contenido-principal">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-movilidad">
+      <h2>Movilidad y Transporte</h2>
+      <p class="subtitle">
+        Explora el sistema de transporte público del barrio Potosí con nuestra 
+        visualización interactiva de paraderos SITP y rutas de conectividad urbana.
+      </p>
+    </section>
+
+    <!-- MAPA INTERACTIVO -->
+    <section class="seccion-mapa">
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+    </section>
+
+    <!-- INFORMACIÓN TÉCNICA -->
+    <section class="info-tecnica">
+      <h3>Visualización del Sistema de Transporte</h3>
+      <p>
+        Este mapa interactivo presenta los <strong>paraderos del Sistema Integrado de Transporte Público (SITP)</strong> 
+        ubicados dentro del barrio Potosí, combinando datos geoespaciales oficiales con fotografías reales de cada paradero.
+      </p>
+      <p>
+        La visualización utiliza <strong>convenciones cartográficas urbanas</strong> para mostrar la conectividad 
+        del barrio con el resto de la ciudad a través del transporte público.
+      </p>
+      
+      <div class="caracteristicas-mapa">
+        <h4>Características del mapa:</h4>
+        <ul>
+          <li><strong>Paraderos SITP:</strong> Representados con íconos de autobús</li>
+          <li><strong>Información detallada:</strong> Nombre, dirección, código y rutas</li>
+          <li><strong>Fotografías reales:</strong> Imágenes actuales de cada paradero</li>
+          <li><strong>Rutas urbanas:</strong> Líneas segmentadas que muestran el recorrido</li>
+          <li><strong>Datos oficiales:</strong> Basado en información del SITP Bogotá</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER DE COPYRIGHT -->
+  <footer class="footer-copy" role="contentinfo">
+    <div>&copy; Copyright. Todos los derechos reservados.</div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script defer src="./proyecto.js"></script>
+  
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
+  
   <!-- Turf.js para operaciones geoespaciales -->
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  
+  <!-- Script específico de movilidad -->
+  <script defer src="./proyectoM.js"></script>
 
-  <!-- Tu JS -->
-  <script src="proyectoM.js"></script>
 </body>
 </html>
