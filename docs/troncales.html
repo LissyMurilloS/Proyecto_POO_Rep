@@ -3,27 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rutas Troncales - Barrio Potosí</title>
+  <title>Rutas Troncales - Mi barrio: Potosí</title>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-  <!-- Estilos globales del proyecto final -->
+  <!-- Estilos globales del proyecto -->
   <link rel="stylesheet" href="estilos.css" />
 
   <!-- Estilos específicos para troncales -->
-  <link rel="stylesheet" href="estilosT.css" />
-
-  <!-- Estilo local -->
   <style>
-    body {
-      font-family: "Delius", cursive;
-      color: var(--title-color);
-      background: var(--page-bg, #ffffff);
-      margin: 0;
-      padding: 0;
-    }
+    /* Importar la tipografía Delius desde Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
 
+    /* Estilos específicos para la página de troncales */
     .intro-section {
       width: 90%;
       max-width: 1200px;
@@ -44,6 +37,64 @@
       margin-bottom: 15px;
     }
 
+    /* Sección de análisis detallado */
+    .analysis-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      line-height: 1.8;
+    }
+
+    .analysis-section h2 {
+      font-size: 2.2rem;
+      color: var(--title-color);
+      margin-bottom: 25px;
+      border-bottom: 3px solid #0d8d82;
+      padding-bottom: 10px;
+    }
+
+    .analysis-section h3 {
+      font-size: 1.8rem;
+      color: var(--title-color);
+      margin: 30px 0 15px 0;
+      padding-left: 10px;
+      border-left: 4px solid #0d8d82;
+    }
+
+    .analysis-section h4 {
+      font-size: 1.4rem;
+      color: #333;
+      margin: 20px 0 10px 0;
+      font-weight: 600;
+    }
+
+    .analysis-section p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      text-align: justify;
+      color: #444;
+    }
+
+    .analysis-section ul {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+
+    .analysis-section li {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .analysis-section strong {
+      color: var(--title-color);
+      font-weight: 700;
+    }
+
     .map-container {
       width: 90%;
       max-width: 1200px;
@@ -59,30 +110,350 @@
       width: 100%;
       height: 100%;
     }
+
+    /* Contenedor principal para el contenido debajo del navbar */
+    .main-content {
+      margin-top: calc(var(--menu-h) * 3); /* Espacio para header + navbar */
+      min-height: calc(100vh - calc(var(--menu-h) * 3));
+    }
+
+    /* Estilo para el popup */
+    .leaflet-popup-content {
+      font-family: var(--main-font);
+      line-height: 1.8;
+      font-size: 15px;
+      color: var(--title-color);
+    }
+
+    .leaflet-popup-content strong {
+      color: var(--title-color);
+      font-weight: 700;
+    }
+
+    /* Estilo para ícono de estación */
+    .estacion-icon {
+      font-size: 24px;
+      text-align: center;
+      color: #27ae60; /* Verde para estaciones troncales */
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .intro-section {
+        width: 95%;
+        font-size: 1.1rem;
+      }
+
+      .intro-section h2 {
+        font-size: 2rem;
+      }
+
+      .analysis-section {
+        width: 95%;
+        padding: 20px 15px;
+      }
+
+      .analysis-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .analysis-section h3 {
+        font-size: 1.5rem;
+      }
+
+      .analysis-section h4 {
+        font-size: 1.2rem;
+      }
+
+      .map-container {
+        width: 95%;
+        height: 500px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .analysis-section {
+        padding: 15px 10px;
+      }
+
+      .analysis-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .analysis-section h3 {
+        font-size: 1.3rem;
+      }
+
+      .analysis-section p,
+      .analysis-section li {
+        font-size: 1rem;
+      }
+
+      .map-container {
+        height: 400px;
+      }
+    }
   </style>
 </head>
 <body>
-  <section class="intro-section">
-    <h2>Rutas Troncales del SITP - Barrio Potosí, Suba</h2>
-    <p>
-      Este mapa interactivo muestra las <strong>rutas troncales del Sistema Integrado de Transporte Público (SITP)</strong> cercanas al barrio Potosí, Suba.
-    </p>
-    <p>
-      Incluye las estaciones más cercanas, como <strong>AV. Boyacá</strong> y <strong>Ferias</strong>, y la <strong>zona de influencia de 800 metros</strong> alrededor del barrio.
-    </p>
-    <p>
-      Las rutas troncales, como <strong>Calle 80 (G22, H20)</strong>, son ejes principales del transporte urbano de Bogotá, con alta frecuencia y capacidad.
-    </p>
-  </section>
 
-  <div class="map-container">
-    <div id="map"></div>
-  </div>
+  <!-- Cabecera principal -->
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li><a href="movilidad.html">Movilidad</a></li>
+          <li><a href="troncales.html">Troncales</a></li>
+          <li><a href="index_David.html">Parques</a></li>
+          <li><a href="vias.html">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="#">Por definir</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li><a href="ubicacion.html">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="index2_David.html">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <section class="intro-section">
+      <h2>Rutas Troncales del SITP - Barrio Potosí, Suba</h2>
+      <p>
+        Este mapa interactivo muestra las <strong>rutas troncales del Sistema Integrado de Transporte Público (SITP)</strong> cercanas al barrio Potosí, Suba.
+      </p>
+      <p>
+        Incluye las estaciones más cercanas, como <strong>AV. Boyacá</strong> y <strong>Ferias</strong>, y la <strong>zona de influencia de 800 metros</strong> alrededor del barrio.
+      </p>
+      <p>
+        Las rutas troncales, como <strong>Calle 80 (G22, H20)</strong>, son ejes principales del transporte urbano de Bogotá, con alta frecuencia y capacidad.
+      </p>
+    </section>
+
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+
+    <!-- Sección de análisis detallado -->
+    <section class="analysis-section">
+      <h2>Conectividad con el Sistema TransMilenio</h2>
+      
+      <h3>Ubicación Respecto al Sistema Troncal</h3>
+      <p>El barrio Potosí no cuenta con estaciones troncales de TransMilenio dentro de su perímetro urbano, sin embargo, su ubicación estratégica le proporciona un acceso privilegiado al sistema masivo de transporte de la ciudad, encontrándose dentro de la <strong>zona de influencia de 800 metros</strong> de importantes estaciones del sistema.</p>
+      
+      <h3>Estaciones TransMilenio Cercanas</h3>
+      <p>El barrio Potosí se beneficia de su proximidad a dos estaciones estratégicas del sistema TransMilenio:</p>
+      
+      <h4>Estación Avenida Boyacá</h4>
+      <p>La <strong>Estación AV. Boyacá</strong> se encuentra ubicada sobre la troncal de la Avenida Boyacá, proporcionando acceso directo al eje norte-sur más importante del sistema TransMilenio.</p>
+      
+      <h4>Estación Ferias</h4>
+      <p>La <strong>Estación Ferias</strong> complementa la oferta de conectividad, ofreciendo una alternativa adicional de acceso al sistema troncal para los habitantes del sector.</p>
+      
+      <h3>Rutas Troncales de Alta Capacidad</h3>
+      
+      <h4>Troncal Calle 80</h4>
+      <p>Las <strong>rutas troncales G22 y H20</strong> que operan sobre la <strong>Calle 80</strong> constituyen ejes principales del transporte urbano de Bogotá, caracterizándose por:</p>
+      <ul>
+        <li><strong>Alta frecuencia</strong> de servicios durante todo el día</li>
+        <li><strong>Alta capacidad</strong> de transporte con buses articulados</li>
+        <li><strong>Conexión estratégica</strong> entre el oriente y occidente de la ciudad</li>
+      </ul>
+      
+      <h4>Troncal Boyacá</h4>
+      <p>La proximidad a la <strong>Troncal Boyacá</strong> representa una ventaja significativa, ofreciendo conexiones directas hacia:</p>
+      <ul>
+        <li><strong>Zona norte</strong>: Acceso hacia Portal del Norte y sectores como Usaquén</li>
+        <li><strong>Zona sur</strong>: Conexión hacia el centro de la ciudad y continuación hacia el sur de Bogotá</li>
+        <li><strong>Transbordos estratégicos</strong>: Posibilidad de realizar transbordos en estaciones clave para acceder a otras troncales del sistema</li>
+      </ul>
+      
+      <h3>Zona de Influencia y Accesibilidad</h3>
+      <p>El barrio Potosí se encuentra estratégicamente ubicado dentro de la <strong>zona de influencia de 800 metros</strong> de estas estaciones troncales, lo que significa que los habitantes pueden acceder caminando al sistema TransMilenio en un tiempo razonable, cumpliendo con los estándares de accesibilidad del transporte público masivo.</p>
+    </section>
+  </main>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-  <!-- Tu JS -->
-  <script src="proyectoT.js"></script>
+  <!-- Script de troncales -->
+  <script>
+    // Coordenadas iniciales del barrio Potosí
+    const centroInicial = [4.696, -74.081];
+
+    // Inicializar el mapa
+    const map = L.map('map').setView(centroInicial, 14);
+
+    // Capa base: OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Estilo para el polígono del barrio
+    const estiloBarrio = {
+      color: '#FF8C00',
+      weight: 3,
+      opacity: 0.8,
+      fillColor: '#FFA500',
+      fillOpacity: 0.1
+    };
+
+    // Estilo para la zona de influencia (Buffer 800 m)
+    const estiloBuffer = {
+      color: '#8e44ad',
+      weight: 2,
+      opacity: 0.7,
+      fillColor: '#8e44ad',
+      fillOpacity: 0.05
+    };
+
+    // Estilo para las rutas troncales
+    const estiloRuta = {
+      color: '#2980b9',     // Azul fuerte
+      weight: 5,
+      opacity: 0.9,
+      dashArray: '10, 6'
+    };
+
+    // Ícono para estaciones troncales
+    const iconoEstacion = L.divIcon({
+      html: '🚉',
+      className: 'estacion-icon',
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30]
+    });
+
+    // Cargar el polígono del barrio Potosí
+    Promise.all([
+      fetch('potosi.geojson').then(r => r.json()),
+      fetch('Buffer_800.geojson').then(r => r.json()),
+      fetch('RutasT_Buffer.geojson').then(r => r.json()),
+      fetch('EstacionesT_Buffer.geojson').then(r => r.json())
+    ])
+    .then(([barrioData, bufferData, rutasData, estacionesData]) => {
+      // Dibujar barrio
+      L.geoJSON(barrioData, {
+        style: estiloBarrio,
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<b>Barrio Potosí</b><br>Localidad: Suba');
+        }
+      }).addTo(map);
+
+      // Dibujar zona de influencia (800 m)
+      L.geoJSON(bufferData, {
+        style: estiloBuffer,
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<b>Zona de influencia</b><br>800 metros alrededor del barrio');
+        }
+      }).addTo(map);
+
+      // Dibujar rutas troncales
+      rutasData.features.forEach(ruta => {
+        const props = ruta.properties;
+        const popupContent = `
+          <b>🚄 Ruta ${props.route_name_ruta_troncal}</b><br>
+          <strong>Nombre:</strong> ${props.nombre_ruta_troncal}<br>
+          <strong>Origen:</strong> ${props.origen_ruta_troncal}<br>
+          <strong>Destino:</strong> ${props.destino_ruta_troncal}<br>
+          <strong>Tipo:</strong> ${props.desc_tipo_ruta_troncal}<br>
+          <strong>Horario:</strong> ${props.horario_lunes_viernes}
+        `;
+
+        L.geoJSON(ruta.geometry, {
+          style: estiloRuta
+        })
+        .bindPopup(popupContent)
+        .addTo(map);
+      });
+
+      // Dibujar estaciones troncales
+      estacionesData.features.forEach(estacion => {
+        const [lng, lat] = estacion.geometry.coordinates;
+        const props = estacion.properties;
+
+        const popupContent = `
+          <b>🚉 ${props.nombre_estacion}</b><br>
+          <strong>Troncal:</strong> ${props.troncal_estacion}<br>
+          <strong>Código:</strong> ${props.numero_estacion}<br>
+          <strong>Ubicación:</strong> ${props.ubicacion_estacion}<br>
+          <strong>Vagones:</strong> ${props.numero_vagones_estacion}
+        `;
+
+        L.marker([lat, lng], { icon: iconoEstacion })
+          .bindPopup(popupContent)
+          .addTo(map);
+      });
+
+      // Centrar el mapa en el barrio
+      const bounds = L.geoJSON(barrioData).getBounds();
+      if (bounds.isValid()) {
+        map.flyToBounds(bounds, { duration: 2, padding: [50, 50] });
+      }
+
+      // --- LEYENDA ---
+      const legend = L.control({ position: 'topright' });
+      legend.onAdd = function () {
+        const div = L.DomUtil.create('div', 'info legend');
+        div.style.backgroundColor = 'white';
+        div.style.padding = '10px';
+        div.style.borderRadius = '8px';
+        div.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+        div.style.fontFamily = '"Delius", cursive';
+        div.style.color = '#0f172a';
+        div.style.fontSize = '14px';
+
+        const labels = [
+          '<strong>Convenciones:</strong><br>',
+          '<i style="background:#FF8C00; width:20px; height:20px; display:block; float:left; margin-right:8px;"></i> Barrio Potosí<br>',
+          '<hr style="margin:8px 0; border:0.5px solid #ddd;">',
+          '<i style="background:#8e44ad; width:20px; height:20px; display:block; float:left; margin-right:8px; opacity:0.1;"></i> Zona 800 m<br>',
+          '<hr style="margin:8px 0; border:0.5px solid #ddd;">',
+          '<i style="background:#2980b9; width:20px; height:3px; display:block; float:left; margin-right:8px; margin-top:6px;"></i> Ruta troncal<br>',
+          '<hr style="margin:8px 0; border:0.5px solid #ddd;">',
+          '<span style="display: inline-block; width: 20px; text-align: center; margin-right: 8px; font-size: 18px;">🚉</span> Estación troncal'
+        ];
+
+        div.innerHTML = labels.join('');
+        return div;
+      };
+      legend.addTo(map);
+    })
+    .catch(err => {
+      console.error('Error al cargar los datos:', err);
+      alert('No se pudieron cargar los datos de troncales.');
+    });
+  </script>
+
+  <!-- Script del proyecto -->
+  <script defer src="./proyecto.js"></script>
+
 </body>
 </html>
