@@ -1,0 +1,249 @@
+/* =========================================================================
+   estilos.css — versión completa y comentada
+   Reemplaza todo el contenido del archivo por este.
+   - Mantiene el comportamiento del menú (submenús por :hover).
+   - Añade la variable --inicio-bg para controlar el fondo de la sección inicial.
+   - Comentarios claros para localizar cambios (colores, tamaños, tipografía).
+   ========================================================================= */
+/* Importar la tipografía Delius desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+/* -----------------------
+   VARIABLES GLOBALES
+   Cambia los valores aquí para modificar rápidamente el estilo global.
+   ----------------------- */
+:root {
+  /* Altura de la barra de menú (px). El header tendrá altura = 2 * --menu-h */
+  --menu-h: 64px;
+
+  /* Tamaño visible del logo dentro de la franja inicial.
+     Ajusta este valor si quieres un logo más grande/pequeño. */
+  --logo-h: 96px;
+
+  /* Color de la barra de menú (cambia aquí el color principal del menú) */
+  --menu-bg: #0d8d82;
+
+  /* Color de la barra de menú al pasar el mouse (hover) */
+  --menu-bg-hover: #09b1a3c5;
+
+  /* Color del texto sobre la barra de menú */
+  --text-on-menu: #ffffff;
+
+  /* Color de fondo general de la página */
+  --page-bg: #ffffff;
+
+  /* Color de fondo exclusivo para la sección inicial (cabecera blanca por defecto) */
+  --inicio-bg: #f3ebe9;
+
+  /* Color de bordes y separadores */
+  --border: #e5e7eb;
+
+  /* Color de títulos principales */
+  --title-color: #0f172a;
+
+  /* Tamaño base de los títulos (puedes personalizar h1/h2/h3 por separado si quieres) */
+  --title-size: 50px;
+
+  /* Tipografía principal del sitio */
+  /*--main-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
+    --main-font: "Delius", cursive;
+}
+
+
+
+/* -----------------------
+   RESET / BASE
+   ----------------------- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  font-family: var(--main-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -----------------------
+   CABECERA (SECCIÓN INICIAL)
+   - Grid de 3 columnas: izquierda (logo), centro (título), derecha (vacío)
+   - Altura = 2 * --menu-h (solicitado)
+   - Fondo controlado por --inicio-bg
+   ----------------------- */
+header.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: calc(var(--menu-h) * 2);    /* la franja inicial será 2 veces el menú */
+  padding: 0 16px;
+  background: var(--inicio-bg);       /* Cambia aquí el color del bloque inicial */
+  border-bottom: 1px solid var(--border);
+}
+
+/* contenedores izquierdo y derecho (alineación) */
+.topbar .left,
+.topbar .right {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Logo (en la columna izquierda)
+   - Controla el tamaño cambiando --logo-h en :root
+   - max-height evita que el logo sobresalga si se pone muy grande */
+#logo {
+  height: var(--logo-h);
+  max-height: calc(var(--menu-h) * 1.8); /* evita que exceda la franja si creces demasiado */
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Asegura que la columna izquierda empuje el logo al borde izquierdo */
+.topbar .left { justify-content: flex-start; }
+
+/* Título centrado en la columna media
+   - Cambia el tamaño en la variable --title-size si quieres otro valor */
+.title {
+  grid-column: 2; /* fuerza al centro */
+  margin: 0;
+  text-align: center;
+  font-size: var(--title-size);
+  font-weight: 800;
+}
+
+/* -----------------------
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   - Ocupa 100% del ancho, color sólido, submenús por :hover
+   - Cambia el color del menú modificando --menu-bg y --menu-bg-hover
+   ----------------------- */
+.navbar {
+  height: var(--menu-h);
+  background: var(--menu-bg); /* color principal del menú */
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0 12px;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  justify-content: center; /* centra el conjunto de links; cambiar a flex-start si prefieres izquierda */
+  gap: 0;
+}
+
+/* cada item principal del menú */
+.menu-item {
+  position: relative;
+}
+
+/* enlace de primer nivel (menú visible) */
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  color: var(--text-on-menu);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* estado hover del primer nivel */
+.menu-link:hover {
+  background: var(--menu-bg-hover);
+}
+
+/* -----------------------
+   SUBMENÚS (ocultos por defecto)
+   - Se muestran únicamente con :hover del padre (modo escritorio).
+   - Mantener este bloque para que no cambie el comportamiento actual.
+   ----------------------- */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;           /* justo debajo del item padre */
+  left: 0;
+  background: var(--menu-bg);
+  min-width: 200px;
+  margin: 6px 0 0 0;
+  padding: 6px 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.submenu li { list-style: none; }
+
+.submenu a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--text-on-menu);
+  text-decoration: none;
+}
+
+.submenu a:hover {
+  background: var(--menu-bg-hover);
+}
+
+/* Mostrar submenú al pasar el mouse por el item padre (comportamiento por hover) */
+.menu-item:hover > .submenu {
+  display: block;
+}
+
+/* -----------------------
+   SECCIÓN HERO / IMAGEN DEL BARRIO
+   - La imagen ocupa 100% del ancho y mantiene su alto (height:auto)
+   - El rótulo "POTOSÍ" aparece centrado con 40% opacidad
+   ----------------------- */
+.barrio-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000; /* color de seguridad mientras carga */
+}
+
+.barrio-img {
+  display: block;
+  width: 100%;
+  height: auto; /* respeta proporción y el alto original */
+}
+
+/* rótulo central sobre la imagen con 40% de opacidad */
+.hero-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(32px, 8vw, 96px);
+  color: rgba(255,255,255,0.4); /* 40% transparencia */
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* -----------------------
+   UTILIDADES / RESPONSIVE BÁSICO
+   - Cambia los valores en :root para controlar comportamiento responsive
+   ----------------------- */
+@media (max-width: 768px) {
+  :root { --menu-h: 56px; }     /* menú un poco más bajo en móvil */
+  :root { --logo-h: 72px; }     /* logo más pequeño en móvil */
+  .title { font-size: 20px; }
+  .menu { justify-content: center; }
+  .menu-link { padding: 0 12px; }
+}
+
+@media (max-width: 480px) {
+  :root { --menu-h: 48px; }
+  :root { --logo-h: 56px; }
+  .title { font-size: 18px; }
+  /* en móviles la navegación extensa puede necesitar otro patrón (hamburger),
+     pero se mantiene el comportamiento hover para escritorio. */
+}

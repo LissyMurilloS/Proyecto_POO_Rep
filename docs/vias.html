@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vías del Barrio Potosí</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Estilos globales del proyecto final -->
+  <link rel="stylesheet" href="estilos.css" />
+
+  <!-- Estilos específicos para esta página -->
+  <style>
+    /* Asegurar fuente y color del proyecto final */
+    body {
+      font-family: "Delius", cursive;
+      color: #0f172a;
+      background: var(--page-bg, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sección de texto: centrado, más ancho */
+    .intro-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+      line-height: 1.6; /* CAMBIAR de 1.8 a 1.6 */
+      font-size: 1.1rem; /* CAMBIAR de 1.3rem a 1.1rem */
+    }
+
+    .intro-section h2 {
+      font-size: 2.2rem; /* CAMBIAR de 2.5rem a 2.2rem */
+      color: #0d8d82;
+      margin-bottom: 20px;
+    }
+
+    .intro-section p {
+      margin-bottom: 12px; /* CAMBIAR de 15px a 12px */
+    }
+
+    /* Bloque de código */
+    .code-example {
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px auto;
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      text-align: left;
+      overflow-x: auto;
+    }
+
+    /* Contenedor del mapa */
+    .map-container {
+      width: 90%;
+      max-width: 1200px;
+      height: 600px;
+      margin: 20px auto;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Estilo personalizado para el popup */
+    .leaflet-popup-content {
+      font-family: "Delius", cursive;
+      line-height: 1.8;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .leaflet-popup-content strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+<header class="topbar" role="banner">
+  <div class="left">
+    <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+  </div>
+  <h1 class="title">Mi barrio: Potosí</h1>
+  <div class="right"></div>
+</header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li><a href="#">Movilidad</a></li>
+          <li><a href="#">Troncales</a></li>
+          <li><a href="#">Parques</a></li>
+          <li><a href="vias.html" class="menu-link-active">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="#">Por definir</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li><a href="ubicacion.html">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="#">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Sección de texto arriba -->
+  <section class="intro-section">
+    <h2>Vías del Barrio Potosí</h2>
+    <p>
+      Este mapa interactivo muestra la malla vial del barrio Potosí, localizado en la localidad de Suba, Bogotá.
+    </p>
+    <p>
+      Desarrollado con <strong>Leaflet</strong>, la biblioteca JavaScript líder para mapas interactivos móviles y de escritorio, este proyecto combina simplicidad, rendimiento y usabilidad.
+    </p>
+    <p>
+      Leaflet, con solo <strong>42 KB</strong>, incluye todas las funciones esenciales: capas de teselas, marcadores, popups, GeoJSON y soporte para dispositivos móviles con arrastre, pinch-zoom y animaciones suaves.
+    </p>
+
+    <p>
+      Así se crea un marcador con popup en Leaflet. En este proyecto, se usan múltiples marcadores para representar las intersecciones de las vías dentro del barrio.
+    </p>
+  </section>
+
+  <!-- Mapa debajo del texto -->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Tu JS -->
+  <script src="proyectoV.js"></script>
+</body>
+</html>
