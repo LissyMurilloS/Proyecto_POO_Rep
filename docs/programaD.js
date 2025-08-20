@@ -68,7 +68,7 @@ const defaultIcon = L.icon({
 let ultimoIcono = null;
 
 // Cargar SOLO el barrio Potosí
-fetch("potosi.geojson")
+fetch('potosiD.geojson')
   .then(response => {
     if (!response.ok) {
       throw new Error(`Error al cargar barrio: ${response.status} ${response.statusText}`);
@@ -77,7 +77,7 @@ fetch("potosi.geojson")
   })
   .then(barrioData => {
     if (!barrioData.features || barrioData.features.length === 0) {
-      throw new Error("El archivo potosi.geojson está vacío o tiene formato incorrecto.");
+      throw new Error("El archivo potosiD.geojson está vacío o tiene formato incorrecto.");
     }
 
     // Dibujar polígono del barrio
@@ -131,7 +131,7 @@ fetch("potosi.geojson")
   })
   .catch(err => {
     console.error("Error en la carga de datos:", err.message);
-    alert("Hubo un problema al cargar potosi.geojson. Verifica que el archivo esté en la misma carpeta.");
+    alert("Hubo un problema al cargar potosiD.geojson. Verifica que el archivo esté en la misma carpeta.");
   });
 
 // Inicializar estado del panel y botón

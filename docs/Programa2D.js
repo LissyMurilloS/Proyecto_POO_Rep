@@ -40,7 +40,7 @@ window.viewer=viewer;
 // Rutas robustas
 const BASE = new URL('.', location.href);
 const URL_PREDIOS = new URL('Predios-Potosi.geojson', BASE).href;
-const URL_VIAS    = new URL('Vias.geojson', BASE).href;
+const URL_VIAS    = new URL('ViasD.geojson', BASE).href;
 
 // ====== Helpers ======
 const idOf = (c)=> c[0].toFixed(6)+","+c[1].toFixed(6);

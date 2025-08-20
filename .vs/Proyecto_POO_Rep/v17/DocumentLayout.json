@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Repos\\Proyecto_POO_Rep\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\index2_David.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\index2_David.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\programaD.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\programaD.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\proyectoM.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\proyectoM.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\index_David.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\index_David.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\index.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\index.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Repos\\Proyecto_POO_Rep\\docs\\Programa2D.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\Programa2D.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index2_David.html",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index2_David.html",
+              "RelativeDocumentMoniker": "docs\\index2_David.html",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index2_David.html",
+              "RelativeToolTip": "docs\\index2_David.html",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-20T03:20:10.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "proyectoM.js",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\proyectoM.js",
+              "RelativeDocumentMoniker": "docs\\proyectoM.js",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\proyectoM.js",
+              "RelativeToolTip": "docs\\proyectoM.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-20T03:15:24.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "programaD.js",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\programaD.js",
+              "RelativeDocumentMoniker": "docs\\programaD.js",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\programaD.js",
+              "RelativeToolTip": "docs\\programaD.js",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAYwIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-20T03:14:29.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "index_David.html",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index_David.html",
+              "RelativeDocumentMoniker": "docs\\index_David.html",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index_David.html",
+              "RelativeToolTip": "docs\\index_David.html",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-20T03:13:55.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index.html",
+              "RelativeDocumentMoniker": "docs\\index.html",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\index.html",
+              "RelativeToolTip": "docs\\index.html",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-20T03:12:37.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Programa2D.js",
+              "DocumentMoniker": "C:\\Repos\\Proyecto_POO_Rep\\docs\\Programa2D.js",
+              "RelativeDocumentMoniker": "docs\\Programa2D.js",
+              "ToolTip": "C:\\Repos\\Proyecto_POO_Rep\\docs\\Programa2D.js",
+              "RelativeToolTip": "docs\\Programa2D.js",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-20T03:09:16.62Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
