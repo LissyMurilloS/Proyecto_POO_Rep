@@ -326,3 +326,97 @@ header.topbar {
   font-weight: 600;
   border-top: 1px solid var(--border);
 }
+
+
+/* =======================
+   INFO-INTERES: Accordions + Layout 2 columnas
+   ======================= */
+
+/* Grid de 2 columnas: contenido (2fr) + aside mapa (1fr) en pantallas amplias */
+.info-interes .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* Columna de texto/accordions */
+.info-contenido {
+  display: grid;
+  gap: 12px;
+}
+
+/* Accordions con <details>/<summary> (accesibles y sin JS) */
+.info-accordion details {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.info-accordion summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 14px 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-accordion summary::-webkit-details-marker { display: none; }
+
+/* Indicador visual (triángulo) */
+.info-accordion summary::after {
+  content: "▸";
+  transition: transform 0.2s ease;
+  font-size: 18px;
+}
+
+.info-accordion details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.info-accordion .panel {
+  padding: 0 16px 14px 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* Mini-mapa como "card" en el aside */
+.info-aside {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card .card-header {
+  padding: 12px 14px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+.card .card-body {
+  padding: 0;
+}
+
+.mini-mapa iframe {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border: 0;
+}
+
+/* Responsive: en pantallas pequeñas, 1 columna */
+@media (max-width: 900px) {
+  .info-interes .wrap {
+    grid-template-columns: 1fr;
+  }
+}
