@@ -33,7 +33,7 @@ img {
 .map-wrap{ min-width: 0; }  /* evita que Leaflet se encoja */
 #map{
   width: 100%;
-  height: 70vh;   /* o 500px */
+  height: 59vh;   /* o 500px */
   min-height: 420px;
   border: 1px solid #ccc;
   border-radius: 8px;
