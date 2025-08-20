@@ -5,9 +5,9 @@
 
 /* CONTENIDO PRINCIPAL */
 .contenido-principal {
-  margin-top: calc(var(--menu-h) * 1.5); /* CAMBIAR de 3 a 2.2 o menos */ /* Espacio para header + navbar */
-  padding: 10px 0; /* CAMBIAR de 30px a 20px */
-  min-height: calc(100vh - calc(var(--menu-h) * 1.5));
+  margin-top: calc(var(--menu-h) * 1); /* CAMBIAR de 3 a 2.2 o menos */ /* Espacio para header + navbar */
+  padding: 5px 0; /* CAMBIAR de 30px a 20px */
+  min-height: calc(100vh - calc(var(--menu-h) * 1));
 }
 
 /* INTRODUCCIÓN A LA SECCIÓN */
