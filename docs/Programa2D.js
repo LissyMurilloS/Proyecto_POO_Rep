@@ -1,3 +1,4 @@
+/* Recorrido virtual */
 /* Programa2.js – Navegación + Autotour (fix: giro manual y retroceso continuo) */
 // ====== Parámetros ======
 const CAMERA_PITCH = Cesium.Math.toRadians(-35);
