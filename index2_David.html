@@ -3,18 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <title>Visor Cesium – Potosí</title>
+
+  <!-- Cesium CSS -->
   <link rel="stylesheet" href="https://unpkg.com/cesium@1.132.0/Build/Cesium/Widgets/widgets.css">
+
+  <!-- Fuente para el título -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    html, body { height:100%; margin:0; overflow:hidden; }
-    #cesiumContainer{ width:100%; height:100vh; outline:none; }
-    #hud{ position:fixed; top:8px; left:8px; background:rgba(0,0,0,.55); color:#fff; 
-          font:12px/1.35 system-ui,-apple-system,Segoe UI,Roboto; padding:6px 8px; border-radius:8px; z-index:10; }
+    /* Reset / base */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #f0f0f0;
+    }
+
+    /* Contenedor principal: imagen arriba + Cesium abajo */
+    #contenedor-vertical {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      height: calc(100% - 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Recuadro de la imagen */
+    #recuadro-imagen {
+      width: 100%;
+      height: 40%;
+      border: 3px solid #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background: #fff;
+      position: relative; /* para posicionar el título dentro */
+    }
+    #recuadro-imagen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  /* llena sin deformar */
+      display: block;
+    }
+
+    /* Título sobre la imagen */
+    #titulo-barrio {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 120px;       /* ajusta si lo quieres más grande/pequeño */
+      font-weight: bold;
+      color: #ffffff9d;        /* blanco translúcido */
+      pointer-events: none;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    /* Recuadro del visor Cesium */
+    #recuadro-cesium {
+      width: 100%;
+      height: 60%;
+      border: 3px solid #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background: #fff;
+      position: relative;
+    }
+
+    /* Mantén tu contenedor de Cesium ocupando todo el panel inferior */
+    #cesiumContainer {
+      width: 100%;
+      height: 100%;
+      outline: none;
+    }
+
+    /* HUD encima del visor (igual que ya tenías) */
+    #hud{
+      position:absolute;
+      top:8px; left:8px;
+      background:rgba(0,0,0,.55);
+      color:#fff;
+      font:12px/1.35 system-ui,-apple-system,Segoe UI,Roboto;
+      padding:6px 8px;
+      border-radius:8px;
+      z-index:10;
+    }
+
+    /* Opcional: si la pantalla es bajita, reparte 50/50 */
+    @media (max-height: 700px) {
+      #recuadro-imagen { height: 50%; }
+      #recuadro-cesium { height: 50%; }
+    }
   </style>
 </head>
 <body>
-  <div id="cesiumContainer"></div>
-  <div id="hud">Listo</div>
 
+  <!-- Layout en dos ventanas -->
+  <div id="contenedor-vertical">
+    <!-- Ventana superior: imagen + título -->
+    <div id="recuadro-imagen">
+      <img src="img/Barrio_Potosi.PNG" alt="Vista del Barrio Potosí">
+      <div id="titulo-barrio">Barrio Potosí</div>
+    </div>
+
+    <!-- Ventana inferior: Cesium -->
+    <div id="recuadro-cesium">
+      <div id="cesiumContainer"></div>
+      <div id="hud">Listo</div>
+    </div>
+  </div>
+
+  <!-- Tus scripts (sin cambios) -->
   <script>window.CESIUM_BASE_URL='https://unpkg.com/cesium@1.132.0/Build/Cesium/';</script>
   <script src="https://unpkg.com/cesium@1.132.0/Build/Cesium/Cesium.js"></script>
   <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
