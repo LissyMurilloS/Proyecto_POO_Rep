@@ -337,3 +337,116 @@ function generateSimulatedStations(){
 
   return turf.featureCollection(pts);
 }
+
+// (… aquí está TODO tu código actual: mapa, métricas, etc.)
+
+// ======================
+// Selector dinámico y serie temporal (AÑADIR AL FINAL)
+// ======================
+document.addEventListener("DOMContentLoaded", () => {
+  // Si ya tienes otro DOMContentLoaded arriba, no pasa nada: ambos se ejecutan.
+  setupSelectorsAndChart().catch(err => console.error(err));
+});
+
+async function setupSelectorsAndChart(){
+  const data = await fetchHistorical();  // lee historico_estaciones.geojson (local)
+  if (!data) return;
+
+  const features = data.features ?? [];
+
+  // 1) poblar contaminantes
+  const contaminants = unique(features.map(f => f.properties?.contaminante).filter(Boolean));
+  const contaminantSelect = document.getElementById("contaminant-select");
+  const stationSelect = document.getElementById("station-select");
+  fillSelect(contaminantSelect, contaminants, "Elige un contaminante");
+
+  // 2) chart vacío
+  const ctx = document.getElementById("timeseries-chart").getContext("2d");
+  const tsChart = new Chart(ctx, {
+    type: "line",
+    data: { labels: [], datasets: [{ label: "Serie", data: [], borderColor: "#0d8d82", backgroundColor: "#0d8d8233", fill: true, tension: 0.3, pointRadius: 2 }] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: { x: { title: { display: true, text: "Fecha" } }, y: { title: { display: true, text: "Valor" }, beginAtZero: true } }
+    }
+  });
+
+  // 3) al cambiar contaminante → estaciones
+  contaminantSelect.addEventListener("change", () => {
+    const contaminant = contaminantSelect.value;
+    const stations = unique(
+      features
+        .filter(f => (f.properties?.contaminante ?? "").toString() === contaminant)
+        .map(f => f.properties?.estacion)
+        .filter(Boolean)
+    );
+    fillSelect(stationSelect, stations, "Elige una estación");
+    stationSelect.disabled = false;
+    updateTimeSeries(tsChart, [], [], `${contaminant} — (elige estación)`);
+  });
+
+  // 4) al cambiar estación → serie temporal
+  stationSelect.addEventListener("change", () => {
+    const contaminant = contaminantSelect.value;
+    const station = stationSelect.value;
+
+    const rows = features
+      .filter(f => (f.properties?.contaminante ?? "").toString() === contaminant && (f.properties?.estacion ?? "").toString() === station)
+      .map(f => ({ t: parseDateSafe(f.properties?.fecha_hora), v: num(f.properties?.valor) }))
+      .filter(r => r.t && Number.isFinite(r.v))
+      .sort((a,b) => a.t - b.t);
+
+    const labels = rows.map(r => formatDateLabel(r.t));
+    const values = rows.map(r => r.v);
+
+    updateTimeSeries(tsChart, labels, values, `${contaminant} — ${station}`);
+
+    // (Opcional) refrescar tarjetas si quieres reflejar promedio de la serie:
+    safeSet("station-title", station);
+    updateTimestamp(); // ya la tienes antes
+  });
+
+  // Helpers
+  function fillSelect(selectEl, options, placeholder){
+    selectEl.innerHTML = "";
+    const opt0 = document.createElement("option");
+    opt0.value = ""; opt0.disabled = true; opt0.selected = true; opt0.textContent = placeholder;
+    selectEl.appendChild(opt0);
+    options.forEach(val => {
+      const opt = document.createElement("option");
+      opt.value = val; opt.textContent = val;
+      selectEl.appendChild(opt);
+    });
+  }
+  function updateTimeSeries(chart, labels, values, label){
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = values;
+    chart.data.datasets[0].label = label;
+    chart.update();
+  }
+}
+
+// Utilidades (si no las tienes ya)
+async function fetchHistorical(){
+  try{
+    // Usa archivo local para evitar CORS
+    const resp = await fetch("historico_estaciones.geojson");
+    if (!resp.ok) throw new Error("No se pudo cargar historico_estaciones.geojson");
+    return await resp.json();
+  }catch(e){
+    console.error("Error cargando histórico:", e);
+    return null;
+  }
+}
+function unique(arr){ return [...new Set(arr)]; }
+function num(v){ const n = Number(v); return Number.isFinite(n) ? n : NaN; }
+function parseDateSafe(d){
+  const t = (typeof d === "string") ? d.replace("T", " ").replace(/\.(\d+)$/, "") : d;
+  const dt = new Date(t);
+  return isNaN(dt) ? null : dt;
+}
+function formatDateLabel(dt){
+  return dt.toLocaleString("es-ES", { day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" });
+}
+function safeSet(id, txt){ const el = document.getElementById(id); if (el) el.textContent = txt; }

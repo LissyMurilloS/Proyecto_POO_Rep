@@ -43,3 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 */
+
+
+// =======================
+// Ajuste de alto del hero (50%)
+// - El contenedor del hero tomará el 50% del alto que tendría la imagen a ancho completo.
+// - Se recalcula en resize para mantener la proporción.
+// =======================
+(function() {
+  function ajustarHero() {
+    const hero = document.querySelector('.barrio-hero');
+    const img = document.querySelector('.barrio-hero .barrio-img');
+    if (!hero || !img) return;
+
+    if (!img.complete || img.naturalWidth === 0) {
+      img.addEventListener('load', ajustarHero, { once: true });
+      return;
+    }
+
+    const width = hero.clientWidth || window.innerWidth;
+    const ratio = img.naturalHeight / img.naturalWidth; // h/w
+    const alturaRenderNatural = ratio * width;
+
+    const target = Math.round(alturaRenderNatural * 0.5); // 50%
+    hero.style.height = target + 'px';
+    // La imagen usa height:100% y object-fit:cover desde CSS.
+  }
+
+  window.addEventListener('DOMContentLoaded', ajustarHero);
+  window.addEventListener('resize', ajustarHero);
+})();
+

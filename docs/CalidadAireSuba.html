@@ -52,6 +52,28 @@
 
     <!-- Derecha: métricas + gráficas -->
     <aside class="right-data-panel">
+            <!-- Dentro del panel derecho (.right-data-panel), añade: -->
+      <section class="controls">
+        <div class="control-row">
+          <label for="contaminant-select">Contaminante</label>
+          <select id="contaminant-select">
+            <option value="" disabled selected>Elige un contaminante</option>
+          </select>
+        </div>
+
+        <div class="control-row">
+          <label for="station-select">Estación</label>
+          <select id="station-select" disabled>
+            <option value="" disabled selected>Elige una estación</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="charts">
+        <h3>Serie temporal</h3>
+        <canvas id="timeseries-chart" height="220"></canvas>
+      </section>
+
       <section class="metrics">
         <div class="meta-row">
           <h2 id="station-title">Seleccione una estación en el mapa</h2>
