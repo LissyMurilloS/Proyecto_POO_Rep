@@ -328,3 +328,42 @@ header.topbar {
   font-weight: 600;
   border-top: 1px solid var(--border);
 }
+
+
+/* ===== Cards styling: transparency + stronger titles ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: rgba(13, 141, 130, 0.88); /* same green as --menu-bg with ~88% opacity */
+  color: var(--text-on-menu);
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  backdrop-filter: saturate(140%) blur(1.5px);
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-weight: 800; /* bold */
+  font-size: clamp(20px, 2.4vw, 24px); /* ~1–2px larger than before */
+  letter-spacing: 0.2px;
+}
+
+.card ul { margin: 6px 0 0 0; padding-left: 18px; }
+.card li { margin: 2px 0; }
+
+/* Center section title */
+.info-interes h2 {
+  text-align: center;
+}
