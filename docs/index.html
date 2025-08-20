@@ -42,7 +42,7 @@
           <li class="menu-item"><a href="movilidad.html" class="menu-link">Movilidad</a></li>
           <li><a href="#">Troncales</a></li>
           <li><a href="#">Parques</a></li>
-          <li class="menu-item"><a href="vias.html" class="menu-link">Vías</a></li>
+          <li><a href="vias.html">Vías</a></li>
         </ul>
       </li>
 
@@ -56,8 +56,8 @@
       <li class="menu-item">
         <a href="#" class="menu-link">Acerca de</a>
         <ul class="submenu">
-          <li><a href="#">Ubicación</a></li>
-          <li><a href="#">Catastro 3D</a></li>
+          <li><a href="ubicacion.html">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
           <li><a href="#">Recorrido virtual</a></li>
         </ul>
       </li>
@@ -78,86 +78,3 @@
   <script defer src="./proyecto.js"></script>
 </body>
 </html>
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi barrio: Potosí</title>
-
-  <!-- Enlace al CSS -->
-  <link rel="stylesheet" href="./estilos.css" />
-</head>
-<body>
-
-  <!--
-    CABECERA PRINCIPAL (franja blanca)
-    - Contiene: logo en la columna izquierda, título centrado en la columna central.
-    - Su altura está vinculada en CSS a --menu-h (header = 2 * --menu-h).
-  -->
-  <header class="topbar" role="banner">
-    <!-- Columna izquierda: logo -->
-    <div class="left">
-      <!-- Asegúrate que el archivo exista en ./assets/logo_redondo_256.png -->
-      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
-    </div>
-
-    <!-- Columna central: título (centrado por la grilla) -->
-    <h1 class="title">Mi barrio: Potosí</h1>
-
-    <!-- Columna derecha: espacio para futuros controles (vacío por ahora) -->
-    <div class="right"></div>
-  </header>
-
-  <!--
-    BARRA DE NAVEGACIÓN (azul)
-    - Ocupa 100% del ancho.
-    - Submenús se muestran solo con :hover (sin JS).
-  -->
-  <nav class="navbar" role="navigation" aria-label="Menú principal">
-    <ul class="menu">
-      <li class="menu-item">
-        <a href="#" class="menu-link">Equipamientos</a>
-        <ul class="submenu">
-          <li><a href="#">Movilidad</a></li>
-          <li><a href="#">Troncales</a></li>
-          <li><a href="#">Parques</a></li>
-          <li><a href="#">Vías</a></li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="#" class="menu-link">Problemática</a>
-        <ul class="submenu">
-          <li><a href="#">Por definir</a></li>
-        </ul>
-      </li>
-
-      <li class="menu-item">
-        <a href="#" class="menu-link">Acerca de</a>
-        <ul class="submenu">
-          <li><a href="#">Ubicación</a></li>
-          <li><a href="#">Catastro 3D</a></li>
-          <li><a href="#">Recorrido virtual</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-
-  <!--
-    SECCIÓN HERO (imagen del barrio)
-    - La imagen ocupa 100% del ancho y mantiene su alto (height:auto).
-    - Encima se coloca la etiqueta "POTOSÍ" con 40% de opacidad.
-  -->
-  <section class="barrio-hero" aria-label="Imagen del barrio Potosí">
-    <img class="barrio-img" src="./assets/barrio_potosi.png" alt="Vista del barrio Potosí" />
-    <div class="hero-label">POTOSÍ</div>
-  </section>
-
-  <!-- Enlace al JS; por ahora el menú funciona con CSS hover -->
-  <script defer src="./proyecto.js"></script>
-</body>
-</html>
-
