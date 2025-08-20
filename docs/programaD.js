@@ -1,3 +1,4 @@
+// Parques del barrio Potosí
 // Inicializar el mapa centrado cerca de Potosí
 const map = L.map('map').setView([4.6962, -74.0826], 16);
 
