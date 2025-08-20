@@ -87,7 +87,33 @@ async function cargarDatos() {
     agregarCapas(localidadesData, barrioData);
 
     // Iniciar animación de zoom
-    setTimeout(() => iniciarAnimacionZoom(), 1500);
+    //setTimeout(() => iniciarAnimacionZoom(), 1500);
+
+    // Configurar observer para iniciar animación cuando el mapa sea visible
+    configurarObserverMapa();
+
+    // Configurar Intersection Observer para detectar cuando el mapa es visible
+    function configurarObserverMapa() {
+      const mapContainer = document.getElementById('map');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Si el mapa es visible al menos en un 70%
+          if (entry.isIntersecting && entry.intersectionRatio > 0.7) {
+            // Iniciar animación después de un breve delay
+            setTimeout(() => iniciarAnimacionZoom(), 1000);
+            
+            // Desconectar el observer para que solo se ejecute una vez
+            observer.unobserve(mapContainer);
+          }
+        });
+      }, {
+        threshold: 0.7, // Se activa cuando el 70% del mapa es visible
+        rootMargin: '0px' // Sin margen adicional
+      });
+  
+  observer.observe(mapContainer);
+}
 
   } catch (error) {
     console.error("Error al cargar datos:", error.message);
