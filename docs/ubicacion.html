@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubicación - Mi Barrio: Potosí</title>
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="./estilos.css" />
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
+  <!-- Estilos específicos de ubicación -->
+  <link rel="stylesheet" href="./estilosU.css" />
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li><a href="#">Movilidad</a></li>
+          <li><a href="#">Troncales</a></li>
+          <li><a href="#">Parques</a></li>
+          <li><a href="vias.html">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="#">Por definir</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li><a href="ubicacion.html" class="menu-link-active">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="#">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL - SECCIÓN DE UBICACIÓN -->
+  <main class="contenido-principal">
+    
+    <!-- HERO SECTION - Intro breve -->
+    <section class="hero-ubicacion">
+      <h2>📍 Ubicación Geográfica</h2>
+      <p class="hero-subtitle">
+        Descubre la ubicación exacta del barrio Potosí en Bogotá D.C. 
+        con nuestra visualización interactiva progresiva.
+      </p>
+    </section>
+
+
+
+    <!-- Mapa de ubicación interactivo -->
+    <section class="seccion-mapa">
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+      
+      <!-- Controles del mapa -->
+      <div class="controles-mapa">
+        <button id="btn-abrir-info" class="btn-info">
+          📍 Mostrar información del barrio
+        </button>
+        <button id="btn-reset-vista" class="btn-reset">
+          🔄 Reiniciar animación
+        </button>
+      </div>
+    </section>
+
+    <!-- EXPLICACIÓN TÉCNICA - Después del mapa -->
+    <section class="explicacion-tecnica">
+      <div class="contenido-explicacion">
+        <h3>🗺️ Visualización Interactiva</h3>
+        <p>
+          El mapa presenta una <strong>animación de acercamiento progresivo</strong> que va desde una vista 
+          general de Bogotá hasta el enfoque específico en el barrio Potosí. Esta técnica de 
+          <em>zoom secuencial</em> facilita la comprensión del contexto geográfico urbano.
+        </p>
+        <p>
+          La visualización utiliza <strong>datos geoespaciales oficiales</strong> de las localidades 
+          de Bogotá y permite identificar la ubicación exacta del barrio dentro de la localidad 
+          de Suba, en el sector norte de la capital.
+        </p>
+        <div class="tecnologia-info">
+          <h4>🛠️ Tecnología implementada:</h4>
+          <ul>
+            <li><strong>Leaflet.js</strong> - Biblioteca de mapas interactivos</li>
+            <li><strong>GeoJSON</strong> - Formato de datos geoespaciales</li>
+            <li><strong>OpenStreetMap</strong> - Capa base cartográfica</li>
+            <li><strong>Animaciones CSS</strong> - Transiciones suaves</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- DATOS ESPECÍFICOS DEL BARRIO - Al final -->
+    <section class="info-adicional">
+      <div class="datos-barrio">
+        <h3>📊 Información del Barrio Potosí</h3>
+        <div class="datos-grid">
+          <div class="dato-item">
+            <strong>Localidad:</strong>
+            <span>Suba</span>
+          </div>
+          <div class="dato-item">
+            <strong>UPZ:</strong>
+            <span>La Alhambra</span>
+          </div>
+          <div class="dato-item">
+            <strong>Estrato:</strong>
+            <span>2-3</span>
+          </div>
+          <div class="dato-item">
+            <strong>Zona:</strong>
+            <span>Norte de Bogotá</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="./proyectoU.js"></script>
+
+</body>
+</html>
