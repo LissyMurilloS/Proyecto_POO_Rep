@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ubicación del Barrio Potosí</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+
+<body>
+  <!-- Banner
+    superior -->
+<div id="banner-imagen">
+  <img src="img/Barrio_Potosi.PNG" alt="Vista del Barrio Potosí">
+  <div id="titulo-barrio">Barrio Potosí</div>
+</div>
+
+  <!-- (lo tuyo) -->
+  <section class="seccion-mapa">
+    
+
+    <!-- CONTENEDOR COMÚN -->
+    <div class="layout">
+
+      <div class="map-container">
+        <div id="map" class="map-wrap"></div>
+      </div>
+
+      <div>
+        <p>
+          Este es un mapa interactivo que muestra la ubicación de los parques en el barrio Potosí.
+          Haz clic en los marcadores para ver más información sobre cada parque.
+        </p>
+        <!-- Panel fuera del visor, a la derecha -->
+        <aside id="sidebar" class="info-box">
+         
+          <p>HAZ CLIC EN UN MARCADOR PARA VER INFORMACIÓN DEL PARQUE.</p>
+          <button id="btn-limpiar">Limpiar</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaflet JS -->
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Tu JS (sin cambios) -->
+  <script defer src="programa.js"></script>
+</body>
+
+</html>

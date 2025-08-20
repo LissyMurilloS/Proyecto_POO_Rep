@@ -1,0 +1,84 @@
+/* Layout general */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+/* Contenedor vertical */
+#contenedor-vertical {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+/* Recuadro de imagen */
+#recuadro-imagen {
+  width: 100%;
+  height: 40%;              /* ocupa 40% arriba */
+  border: 3px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: white;
+  position: relative;
+}
+
+#recuadro-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Título sobre la imagen */
+#titulo-barrio {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 120px;   /* puedes reducir si es muy grande */
+  font-weight: bold;
+  color: #ffffff9d;
+  pointer-events: none;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Recuadro del visor Cesium */
+#recuadro-cesium {
+  width: 100%;
+  height: 60%;              /* ocupa 60% abajo */
+  border: 3px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: white;
+  position: relative;
+}
+
+#cesiumContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* HUD sigue visible dentro de Cesium */
+#hud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font: 12px/1.35 system-ui,-apple-system,Segoe UI,Roboto;
+  padding: 6px 8px;
+  border-radius: 8px;
+  z-index: 10;
+}
