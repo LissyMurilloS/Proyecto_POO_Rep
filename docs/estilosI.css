@@ -1,0 +1,82 @@
+/* estilosS.css — sin recuadros, integrado con el proyecto final */
+
+/* Asegurar herencia del estilo global */
+:root {
+  --main-font: "Delius", cursive;
+  --title-color: #0f172a;
+  --text-color: #333;
+  --border-color: #e5e7eb;
+  --bg-light: #f8f9fa;
+}
+
+/* Sección de texto arriba */
+.intro-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.3rem;
+  font-family: var(--main-font);
+  color: var(--title-color);
+}
+
+.intro-section h2 {
+  font-size: 2.5rem;
+  color: var(--title-color);
+  margin-bottom: 20px;
+}
+
+.intro-section p {
+  margin-bottom: 15px;
+}
+
+/* Contenedor del mapa */
+.map-container {
+  width: 90%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 20px auto;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo del popup */
+.leaflet-popup-content {
+  font-family: var(--main-font);
+  line-height: 1.8;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.leaflet-popup-content strong {
+  color: var(--title-color);
+  font-weight: 700;
+}
+
+/* Ícono personalizado con emoji */
+.custom-icon {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Leyenda: misma fuente que el resto */
+.info.legend {
+  font-family: var(--main-font);
+  line-height: 1.8;
+  color: var(--text-color);
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}

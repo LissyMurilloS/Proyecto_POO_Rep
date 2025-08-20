@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sitios de Interés - Barrio Potosí</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Estilos globales del proyecto final -->
+  <link rel="stylesheet" href="estilos.css" />
+
+  <!-- Estilos específicos de sitios de interés -->
+  <link rel="stylesheet" href="estilosI.css" />
+</head>
+<body>
+<!-- Sección de texto arriba -->
+<section class="intro-section">
+  <h2>Sitios de Interés: Análisis de Proximidad en el Barrio Potosí, Suba</h2>
+  <p>
+    Dentro del <strong>barrio Potosí</strong> solo se identificaron <strong>zonas recreativas oficiales</strong> (parques), clasificadas como espacios deportivos y recreativos (<em>DEP-REC</em>) por el <strong>Instituto Distrital de Recreación y Turismo (IDRD)</strong>.
+  </p>
+  <p>
+    Para ampliar el análisis y comprender mejor la red de servicios y espacios relevantes en su entorno, se generaron <strong>buffer de proximidad</strong> de 200, 400, 600 y 800 metros alrededor del barrio.
+  </p>
+  <p>
+    En estas zonas aledañas se encuentran servicios esenciales para la comunidad, como <strong>planteles educativos</strong>, <strong>centros comerciales</strong>, <strong>instituciones públicas</strong> (JAC, IDPAC), <strong>supermercados</strong> y <strong>espacios culturales</strong>. Esto resalta la importancia del barrio no solo como un núcleo residencial, sino como un punto estratégico conectado con una red amplia de recursos urbanos.
+  </p>
+  <p>
+    Desarrollado con <strong>Leaflet</strong>, esta visualización combina simplicidad y profundidad geográfica para destacar la relación entre el barrio y su entorno inmediato, mostrando cómo los ciudadanos acceden a servicios más allá de los límites barriales.
+  </p>
+</section>
+
+  <!-- Mapa debajo del texto -->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Tu JS -->
+  <script src="proyectoI.js"></script>
+</body>
+</html>

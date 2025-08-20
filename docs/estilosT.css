@@ -1,4 +1,4 @@
-/* estilosM.css — versión minimalista y alineada con el proyecto final */
+/* estilosT.css — sin recuadros, integrado con el proyecto final */
 
 :root {
   --main-font: "Delius", cursive;
@@ -6,19 +6,9 @@
   --text-color: #333;
   --border-color: #e5e7eb;
   --bg-light: #f8f9fa;
-  --accent-color: #0d8d82;
-  --accent-hover: #09b1a3c5;
 }
 
-/* Estilo para el ícono de paradero (autobús) */
-.paradero-icon {
-  font-size: 24px;
-  line-height: 1;
-  text-align: center;
-  color: #e74c3c; /* Rojo SITP */
-}
-
-/* Estilo personalizado para el popup */
+/* Estilo para el popup */
 .leaflet-popup-content {
   font-family: var(--main-font);
   line-height: 1.8;
@@ -29,4 +19,11 @@
 .leaflet-popup-content strong {
   color: var(--title-color);
   font-weight: 700;
+}
+
+/* Estilo para ícono de estación */
+.estacion-icon {
+  font-size: 24px;
+  text-align: center;
+  color: #27ae60; /* Verde para estaciones troncales */
 }
