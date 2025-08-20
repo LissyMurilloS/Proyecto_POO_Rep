@@ -16,7 +16,6 @@
 
   <!-- Estilo local para integración visual -->
   <style>
-    /* Asegurar fuente y color del proyecto final */
     body {
       font-family: "Delius", cursive;
       color: var(--title-color);
@@ -25,7 +24,6 @@
       padding: 0;
     }
 
-    /* Sección de texto arriba */
     .intro-section {
       width: 90%;
       max-width: 1200px;
@@ -46,7 +44,6 @@
       margin-bottom: 15px;
     }
 
-    /* Contenedor del mapa */
     .map-container {
       width: 90%;
       max-width: 1200px;
@@ -67,22 +64,21 @@
 <body>
   <!-- Sección de texto arriba -->
   <section class="intro-section">
-  <h2>Movilidad en el Barrio Potosí, Suba</h2>
-  <p>
-    Este mapa interactivo muestra los paraderos del Sistema Integrado de Transporte Público (SITP) en el barrio Potosí, Suba.
-  </p>
-  <p>
-    Este mapa utiliza <strong>Leaflet</strong>, la biblioteca JavaScript más popular para mapas interactivos, diseñada con enfoque en simplicidad, rendimiento y experiencia de usuario.
-  </p>
-  <p>
-    Con apenas <strong>42 KB</strong>, Leaflet ofrece todo lo necesario: capas de teselas, marcadores interactivos, popups con contenido personalizado y soporte nativo para GeoJSON, además de funcionar perfectamente en dispositivos móviles.
-  </p>
-  <p>
-    En este proyecto, cada paradero del SITP se representa con un ícono de autobús (🚌), y al hacer clic se muestra información detallada junto con una <strong>imagen real del paradero</strong>, enriqueciendo la experiencia visual y comunitaria del mapa.
-  </p>
-</section>
+    <h2>Movilidad en el Barrio Potosí, Suba</h2>
+    <p>
+      Este mapa interactivo muestra los <strong>paraderos del Sistema Integrado de Transporte Público (SITP)</strong> ubicados dentro del barrio Potosí, Suba.
+    </p>
+    <p>
+      Cada paradero se representa con un ícono de autobús (🚌) y, al hacer clic, se muestra información detallada: nombre, dirección, código de cenefa, rutas del SITP que pasan por ahí y una <strong>imagen real del paradero</strong>.
+    </p>
+    <p>
+      Las <strong>rutas del SITP</strong> se muestran como líneas segmentadas en gris, basadas en datos oficiales del sistema de transporte urbano.
+    </p>
+    <p>
+      Esta visualización combina datos geoespaciales, fotografías y convenciones cartográficas para ofrecer una experiencia clara y comunitaria del sistema de movilidad en el barrio.
+    </p>
+  </section>
 
-  <!-- Mapa debajo del texto -->
   <div class="map-container">
     <div id="map"></div>
   </div>
