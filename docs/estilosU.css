@@ -5,18 +5,28 @@
 
 /* CONTENIDO PRINCIPAL */
 .contenido-principal {
-  margin-top: calc(var(--menu-h) * 3); /* Espacio para header + navbar */
-  padding: 30px 0;
-  min-height: calc(100vh - calc(var(--menu-h) * 3));
+  margin-top: calc(var(--menu-h) * 1.5); /* CAMBIAR de 3 a 2.2 o menos */ /* Espacio para header + navbar */
+  padding: 10px 0; /* CAMBIAR de 30px a 20px */
+  min-height: calc(100vh - calc(var(--menu-h) * 1.5));
 }
 
 /* INTRODUCCIÓN A LA SECCIÓN */
+
+.hero-ubicacion, .intro-ubicacion {
+  width: 90%;
+  max-width: 1200px;
+  margin: 10px auto 30px auto; /* REDUCIR margen superior de 0 a 10px */
+  padding: 0 20px;
+  text-align: center;
+  font-family: var(--main-font);
+}
+
 .intro-ubicacion {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto 40px auto;
   padding: 0 20px;
-  text-align: center;
+  text-align: center; /* Ya está centrado, verifica que no haya otro CSS sobrescribiendo */
   font-family: var(--main-font);
 }
 
@@ -269,4 +279,60 @@
     text-align: center;
     gap: 8px;
   }
+}
+
+/* SECCIÓN DE EXPLICACIÓN TÉCNICA - AGREGAR AL FINAL DEL ARCHIVO */
+.explicacion-tecnica {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 30px;
+  background: rgba(13, 141, 130, 0.6); /* CAMBIAR esta línea */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: var(--main-font);
+  text-align: center;
+}
+
+.contenido-explicacion {
+  color: var(--text-on-menu);
+}
+
+.contenido-explicacion h3 {
+  color: var(--text-on-menu);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.contenido-explicacion p {
+  color: var(--text-on-menu);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.tecnologia-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.tecnologia-info h4 {
+  color: var(--text-on-menu);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.tecnologia-info ul {
+  color: var(--text-on-menu);
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.tecnologia-info li {
+  color: var(--text-on-menu);
+  margin-bottom: 8px;
 }
