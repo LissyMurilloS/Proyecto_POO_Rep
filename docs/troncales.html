@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rutas Troncales - Barrio Potosí</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Estilos globales del proyecto final -->
+  <link rel="stylesheet" href="estilos.css" />
+
+  <!-- Estilos específicos para troncales -->
+  <link rel="stylesheet" href="estilosT.css" />
+
+  <!-- Estilo local -->
+  <style>
+    body {
+      font-family: "Delius", cursive;
+      color: var(--title-color);
+      background: var(--page-bg, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    .intro-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.3rem;
+    }
+
+    .intro-section h2 {
+      font-size: 2.5rem;
+      color: var(--title-color);
+      margin-bottom: 20px;
+    }
+
+    .intro-section p {
+      margin-bottom: 15px;
+    }
+
+    .map-container {
+      width: 90%;
+      max-width: 1200px;
+      height: 600px;
+      margin: 20px auto;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <section class="intro-section">
+    <h2>Rutas Troncales del SITP - Barrio Potosí, Suba</h2>
+    <p>
+      Este mapa interactivo muestra las <strong>rutas troncales del Sistema Integrado de Transporte Público (SITP)</strong> cercanas al barrio Potosí, Suba.
+    </p>
+    <p>
+      Incluye las estaciones más cercanas, como <strong>AV. Boyacá</strong> y <strong>Ferias</strong>, y la <strong>zona de influencia de 800 metros</strong> alrededor del barrio.
+    </p>
+    <p>
+      Las rutas troncales, como <strong>Calle 80 (G22, H20)</strong>, son ejes principales del transporte urbano de Bogotá, con alta frecuencia y capacidad.
+    </p>
+  </section>
+
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Tu JS -->
+  <script src="proyectoT.js"></script>
+</body>
+</html>
