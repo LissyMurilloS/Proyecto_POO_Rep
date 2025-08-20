@@ -277,6 +277,7 @@ header.topbar {
 
 /* Sección “Información de interés” con fondo de la barra inicial */
 .info-interes {
+  min-height: 200px;
   width: 100%;
   background: var(--inicio-bg);
   border-top: 1px solid var(--border);
@@ -419,4 +420,74 @@ header.topbar {
   .info-interes .wrap {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* Layout 2 columnas para info + mapa */
+.info-interes .wrap.info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .info-interes .wrap.info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos de acordeones (details) como cards */
+.acordeon details {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.acordeon details + details {
+  margin-top: 10px;
+}
+
+.acordeon summary {
+  cursor: pointer;
+  font-weight: 700;
+  outline: none;
+  list-style: none;
+}
+
+.acordeon summary::-webkit-details-marker { display: none; }
+
+.acordeon summary::after {
+  content: "▸";
+  float: right;
+  transform: rotate(0deg);
+  transition: transform .2s ease;
+}
+
+details[open] > summary::after { transform: rotate(90deg); }
+
+.acordeon .content {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+/* Card del minimapa */
+.mini-mapa {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.mini-mapa h3 {
+  margin: 0 0 8px;
+}
+
+.mini-mapa iframe {
+  width: 100%;
+  height: 280px;
+  border: 0;
+  border-radius: 8px;
 }

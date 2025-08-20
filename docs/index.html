@@ -4,57 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mi barrio: Potosí</title>
-
-  <!-- Enlace al CSS -->
   <link rel="stylesheet" href="./estilos.css" />
 </head>
 <body>
 
-  <!--
-    CABECERA PRINCIPAL (franja blanca)
-    - Contiene: logo en la columna izquierda, título centrado en la columna central.
-    - Su altura está vinculada en CSS a --menu-h (header = 2 * --menu-h).
-  -->
+  <!-- CABECERA PRINCIPAL -->
   <header class="topbar" role="banner">
-    <!-- Columna izquierda: logo -->
     <div class="left">
-      <!-- Asegúrate que el archivo exista en ./assets/logo_redondo_256.png -->
       <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
     </div>
-
-    <!-- Columna central: título (centrado por la grilla) -->
     <h1 class="title">Mi barrio: Potosí</h1>
-
-    <!-- Columna derecha: espacio para futuros controles (vacío por ahora) -->
     <div class="right"></div>
   </header>
 
-  <!--
-    BARRA DE NAVEGACIÓN (azul)
-    - Ocupa 100% del ancho.
-    - Submenús se muestran solo con :hover (sin JS).
-  -->
-
+  <!-- MENÚ -->
   <nav class="navbar" role="navigation" aria-label="Menú principal">
     <ul class="menu">
       <li class="menu-item">
         <a href="#" class="menu-link">Equipamientos</a>
         <ul class="submenu">
           <li class="menu-item"><a href="movilidad.html" class="menu-link">Movilidad</a></li>
-          <li class="menu-item"><a href="interes.html" class="menu-link">Sitios de interes</a></li>
+          <li class="menu-item"><a href="interes.html" class="menu-link">Sitios de interés</a></li>
           <li class="menu-item"><a href="troncales.html" class="menu-link">Troncales</a></li>
           <li class="menu-item"><a href="index_David.html" class="menu-link">Parques</a></li>
           <li class="menu-item"><a href="vias.html" class="menu-link">Vías</a></li>
         </ul>
       </li>
-
       <li class="menu-item">
         <a href="#" class="menu-link">Problemática</a>
         <ul class="submenu">
           <li><a href="CalidadAire.html">Calidad del aire</a></li>
         </ul>
       </li>
-
       <li class="menu-item">
         <a href="#" class="menu-link">Acerca de</a>
         <ul class="submenu">
@@ -66,143 +47,84 @@
     </ul>
   </nav>
 
-  <!--
-    SECCIÓN HERO (imagen del barrio)
-    - La imagen ocupa 100% del ancho y mantiene su alto (height:auto).
-    - Encima se coloca la etiqueta "POTOSÍ" con 40% de opacidad.
-  -->
+  <!-- HERO (imagen) -->
   <section class="barrio-hero" aria-label="Imagen del barrio Potosí">
     <img class="barrio-img" src="./assets/barrio_potosi.png" alt="Vista del barrio Potosí" />
     <div class="hero-label">POTOSÍ</div>
-  
-  <!-- Franja verde (80% opacidad) -->
+  </section><!-- 👈 CIERRE DEL HERO (IMPORTANTE) -->
+
+  <!-- FRANJA VERDE (80% opacidad / mitad del menú) -->
   <div class="franja-verde" aria-hidden="true"></div>
 
-
-<section class="info-interes" aria-label="Información de interés del barrio">
-  <div class="wrap">
-    <div class="info-contenido">
+  <!-- INFORMACIÓN DE INTERÉS -->
+  <section class="info-interes" aria-label="Información de interés del barrio">
+    <div class="wrap">
       <h2>Barrio Potosí — Localidad de Suba, Bogotá</h2>
 
-      <div class="info-accordion">
-        <details open>
-          <summary>Ubicación geográfica</summary>
-          <div class="panel">
-            <p>El barrio Potosí se encuentra ubicado entre la Avenida Ciudad de Suba (al norte) y la Avenida Carrera 68 (al sur), la Avenida Suba (al oriente) y la Carrera 91 con Calle 93 (al occidente). Su localización lo sitúa estratégicamente cerca del cruce de la Avenida Boyacá con la Avenida Calle 80, en el sector noroccidental de Bogotá.</p>
-          </div>
-        </details>
+      <!-- Bloques como ACORDEONES -->
+      <details open>
+        <summary><strong>Ubicación geográfica</strong></summary>
+        <p>El barrio Potosí se encuentra ubicado entre la Avenida Ciudad de Suba (N) y la Avenida Carrera 68 (S), la Avenida Suba (E) y la Carrera 91 con Calle 93 (O). Está cerca del cruce Av. Boyacá × Av. Calle 80, en el noroccidente de Bogotá.</p>
+      </details>
 
-        <details>
-          <summary>Información postal y administrativa</summary>
-          <div class="panel">
-            <p>El código postal del barrio Potosí en Suba es <strong>111121</strong>. Este mismo código aplica también a los barrios: Almirante Colón, Altos de Chozica, Andes Norte, Ciudad Hunza, Club de Los Lagartos, Julio Flórez, Los Naranjos, Niza Norte, Niza Suba, Niza Sur, Potosí, Santa Rosa y Vereda Suba Naranjos.</p>
-          </div>
-        </details>
+      <details>
+        <summary><strong>Información postal y administrativa</strong></summary>
+        <p>El código postal es <strong>111121</strong>, compartido con: Almirante Colón, Altos de Chozica, Andes Norte, Ciudad Hunza, Club de Los Lagartos, Julio Flórez, Los Naranjos, Niza Norte, Niza Suba, Niza Sur, Potosí, Santa Rosa y Vereda Suba Naranjos.</p>
+      </details>
 
-        <details>
-          <summary>Contexto histórico de la localidad</summary>
-          <div class="panel">
-            <p>Potosí se inscribe en el contexto histórico de Suba, antiguo poblado muisca. En 1875, Suba fue declarada territorio libre de indígenas y posteriormente se convirtió en municipio satélite de Bogotá. En 1954 se integró al Distrito, impulsando un acelerado desarrollo urbanístico.</p>
-          </div>
-        </details>
+      <details>
+        <summary><strong>Contexto histórico de la localidad</strong></summary>
+        <p>Suba fue un importante poblado muisca. En 1875 fue declarada territorio libre de indígenas y luego municipio satélite de Bogotá. En 1954 se integró al Distrito, acelerando el desarrollo urbanístico.</p>
+      </details>
 
-        <details>
-          <summary>Desarrollo urbanístico</summary>
-          <div class="panel">
-            <p>El barrio forma parte de la expansión urbana de Suba desde mediados del siglo XX. Antiguamente, los terrenos eran grandes haciendas que se parcelaron, dando paso al crecimiento residencial, especialmente desde los años 70 y 80.</p>
-          </div>
-        </details>
+      <details>
+        <summary><strong>Desarrollo urbanístico</strong></summary>
+        <p>Forma parte de la expansión de Suba desde mediados del siglo XX. Terrenos antes de haciendas se parcelaron y dieron paso al crecimiento residencial, especialmente desde los años 70 y 80.</p>
+      </details>
 
-        <details>
-          <summary>Características generales</summary>
-          <div class="panel">
-            <ul>
-              <li><strong>Localidad:</strong> Suba (Localidad 11 de Bogotá)</li>
-              <li><strong>Código postal:</strong> 111121</li>
-              <li><strong>Ubicación específica:</strong> Sector noroccidental, cerca del cruce Av. Boyacá × Av. Calle 80</li>
-              <li><strong>Límites:</strong> Entre AC Suba (N), AK 68 (S), AK Suba (E), KR 91 y CL 93 (O)</li>
-              <li><strong>Conectividad:</strong> Excelente acceso por Av. Boyacá y Av. Calle 80</li>
-            </ul>
-          </div>
-        </details>
+      <details>
+        <summary><strong>Características generales</strong></summary>
+        <ul>
+          <li><strong>Localidad:</strong> Suba (Localidad 11 de Bogotá)</li>
+          <li><strong>Código postal:</strong> 111121</li>
+          <li><strong>Ubicación específica:</strong> Noroccidente, cerca de Av. Boyacá × Av. Calle 80</li>
+          <li><strong>Límites:</strong> AC Suba (N), AK 68 (S), AK Suba (E), KR 91 y CL 93 (O)</li>
+          <li><strong>Conectividad:</strong> Excelente acceso por Av. Boyacá y Av. Calle 80</li>
+        </ul>
+      </details>
 
-        <details>
-          <summary>Importancia estratégica</summary>
-          <div class="panel">
-            <p>Su ubicación lo convierte en un sector estratégico por la conectividad vial con dos arterias principales: la Avenida Boyacá (eje norte-sur) y la Avenida Calle 80 (conexión del noroccidente). <em>Nota:</em> La Avenida El Dorado corresponde a la Avenida 26, no a la Calle 80.</p>
-          </div>
-        </details>
+      <details>
+        <summary><strong>Importancia estratégica</strong></summary>
+        <p>Sector estratégico por su conectividad con Av. Boyacá (eje N-S) y Av. Calle 80 (conexión del noroccidente). <em>Nota:</em> Av. El Dorado es la Av. 26, no la Calle 80.</p>
+      </details>
 
-        <details>
-          <summary>Contexto actual</summary>
-          <div class="panel">
-            <p>Potosí integra la localidad de Suba, la más poblada de Bogotá (≈1.348.372 habitantes). Esta condición demográfica favorece un alto dinamismo urbano e inmobiliario, con potencial de desarrollo residencial y comercial apoyado en su excelente conectividad.</p>
-          </div>
-        </details>
-      </div>
+      <details>
+        <summary><strong>Contexto actual</strong></summary>
+        <p>Suba es la localidad más poblada de Bogotá (~1.348.372 habitantes), con alto dinamismo urbano e inmobiliario. Potosí tiene potencial residencial y comercial por su conectividad y consolidación urbana.</p>
+      </details>
+
+      <!-- MINI-MAPA -->
+      <aside>
+        <h3>Mapa de referencia</h3>
+        <iframe
+          title="Mapa Barrio Potosí Suba Bogotá"
+          width="100%"
+          height="280"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Barrio%20Potos%C3%AD%20Suba%20Bogot%C3%A1&output=embed">
+        </iframe>
+      </aside>
     </div>
+  </section>
 
-    <aside class="info-aside">
-      <div class="card mini-mapa">
-        <div class="card-header">Mapa de referencia</div>
-        <div class="card-body">
-          <!-- Mini-mapa embebido (consulta textual; si prefieres coordenadas exactas, me las pasas y las coloco) -->
-          <iframe
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Barrio%20Potos%C3%AD%20Suba%20Bogot%C3%A1&output=embed">
-          </iframe>
-        </div>
-      </div>
-    </aside>
-  </div>
-</section>
-
-
-    <section>
-      <h3>Información postal y administrativa</h3>
-      <p>El código postal del barrio Potosí en Suba es <strong>111121</strong>. Este mismo código aplica también a los barrios: Almirante Colón, Altos de Chozica, Andes Norte, Ciudad Hunza, Club de Los Lagartos, Julio Flórez, Los Naranjos, Niza Norte, Niza Suba, Niza Sur, Potosí, Santa Rosa y Vereda Suba Naranjos.</p>
-    </section>
-
-    <section>
-      <h3>Contexto histórico de la localidad</h3>
-      <p>Potosí se inscribe en el contexto histórico de Suba, antiguo poblado muisca. En 1875, Suba fue declarada territorio libre de indígenas y posteriormente se convirtió en municipio satélite de Bogotá. En 1954 se integró al Distrito, impulsando un acelerado desarrollo urbanístico.</p>
-    </section>
-
-    <section>
-      <h3>Desarrollo urbanístico</h3>
-      <p>El barrio forma parte de la expansión urbana de Suba desde mediados del siglo XX. Antiguamente, los terrenos eran grandes haciendas que se parcelaron, dando paso al crecimiento residencial, especialmente desde los años 70 y 80.</p>
-    </section>
-
-    <section>
-      <h3>Características generales</h3>
-      <ul>
-        <li><strong>Localidad:</strong> Suba (Localidad 11 de Bogotá)</li>
-        <li><strong>Código postal:</strong> 111121</li>
-        <li><strong>Ubicación específica:</strong> Sector noroccidental, cerca del cruce Av. Boyacá × Av. Calle 80</li>
-        <li><strong>Límites:</strong> Entre AC Suba (N), AK 68 (S), AK Suba (E), KR 91 y CL 93 (O)</li>
-        <li><strong>Conectividad:</strong> Excelente acceso por Av. Boyacá y Av. Calle 80</li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>Importancia estratégica</h3>
-      <p>Su ubicación lo convierte en un sector estratégico por la conectividad vial con dos arterias principales: la Avenida Boyacá (eje norte-sur) y la Avenida Calle 80 (conexión del noroccidente). <em>Nota:</em> La Avenida El Dorado corresponde a la Avenida 26, no a la Calle 80.</p>
-    </section>
-
-    <section>
-      <h3>Contexto actual</h3>
-      <p>Potosí integra la localidad de Suba, la más poblada de Bogotá (≈1.348.372 habitantes). Esta condición demográfica favorece un alto dinamismo urbano e inmobiliario, con potencial de desarrollo residencial y comercial apoyado en su excelente conectividad.</p>
-    </section>
-  </div>
-</section>
-
-  <!-- Franja final de copyright -->
+  <!-- FOOTER -->
   <footer class="footer-copy" role="contentinfo">
     <div>&copy; Copyright. Todos los derechos reservados.</div>
   </footer>
 
-  <!-- Enlace al JS; por ahora el menú funciona con CSS hover -->
+  <!-- JS -->
   <script defer src="./proyecto.js"></script>
 </body>
 </html>

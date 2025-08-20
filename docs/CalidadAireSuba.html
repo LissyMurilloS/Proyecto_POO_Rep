@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Turf.js (geo utilidades: punto-en-polígono, etc.) -->
+  <!-- Turf.js (geo utilidades) -->
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
   <!-- Chart.js -->
@@ -33,7 +33,6 @@
   <nav class="navbar" aria-label="Menú principal">
     <ul class="menu">
       <li class="menu-item"><a href="index.html" class="menu-link">Inicio</a></li>
-      <li class="menu-item"><a href="CalidadAireSuba.html" class="menu-link">Versión General</a></li>
     </ul>
   </nav>
 
@@ -52,7 +51,6 @@
 
     <!-- Derecha: métricas + gráficas -->
     <aside class="right-data-panel">
-            <!-- Dentro del panel derecho (.right-data-panel), añade: -->
       <section class="controls">
         <div class="control-row">
           <label for="contaminant-select">Contaminante</label>
@@ -66,6 +64,19 @@
           <select id="station-select" disabled>
             <option value="" disabled selected>Elige una estación</option>
           </select>
+        </div>
+
+        <!-- Filtros de fecha -->
+        <div class="control-row">
+          <label for="date-start">Desde</label>
+          <input type="datetime-local" id="date-start">
+        </div>
+        <div class="control-row">
+          <label for="date-end">Hasta</label>
+          <input type="datetime-local" id="date-end">
+        </div>
+        <div class="control-row">
+          <button id="btn-apply-range">Aplicar rango</button>
         </div>
       </section>
 
@@ -87,7 +98,7 @@
               <div class="metric-badge" id="pm25-badge">—</div>
             </div>
             <div class="metric-value"><span id="pm25-val">—</span> <small>µg/m³</small></div>
-            <div class="metric-desc">Recomendado OMS ≤ 15 µg/m³</div>
+            <div class="metric-desc">OMS ≤ 15 µg/m³</div>
           </div>
 
           <div class="metric-card">
@@ -96,7 +107,7 @@
               <div class="metric-badge" id="pm10-badge">—</div>
             </div>
             <div class="metric-value"><span id="pm10-val">—</span> <small>µg/m³</small></div>
-            <div class="metric-desc">Recomendado OMS ≤ 45 µg/m³</div>
+            <div class="metric-desc">OMS ≤ 45 µg/m³</div>
           </div>
 
           <div class="metric-card">
@@ -105,7 +116,7 @@
               <div class="metric-badge" id="no2-badge">—</div>
             </div>
             <div class="metric-value"><span id="no2-val">—</span> <small>µg/m³</small></div>
-            <div class="metric-desc">Recomendado OMS ≤ 25 µg/m³</div>
+            <div class="metric-desc">OMS ≤ 25 µg/m³</div>
           </div>
 
           <div class="metric-card">
@@ -114,7 +125,7 @@
               <div class="metric-badge" id="o3-badge">—</div>
             </div>
             <div class="metric-value"><span id="o3-val">—</span> <small>µg/m³</small></div>
-            <div class="metric-desc">Recomendado OMS ≤ 100 µg/m³ (8h)</div>
+            <div class="metric-desc">OMS ≤ 100 µg/m³ (8h)</div>
           </div>
         </div>
       </section>
@@ -133,3 +144,4 @@
   <script defer src="proyectoCASuba.js"></script>
 </body>
 </html>
+
