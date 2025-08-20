@@ -1,258 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calidad del Aire - Barrio Potosí</title>
-  
-  <!-- Enlace al CSS específico para calidad del aire -->
-  <link rel="stylesheet" href="./estilosCA.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calidad del Aire - Suba</title>
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="estilosCASuba.css" />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Turf.js (geo utilidades: punto-en-polígono, etc.) -->
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 </head>
 <body>
 
-  <!--
-    CABECERA PRINCIPAL (franja inicial)
-    - Mantiene el diseño de tu estructura original
-    - Logo en la izquierda, título centrado
-  -->
-  <header class="topbar" role="banner">
-    <!-- Columna izquierda: logo -->
+  <!-- Cabecera -->
+  <header class="topbar">
     <div class="left">
-      <!-- Asegúrate que el archivo exista en ./assets/logo_redondo_256.png -->
       <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
     </div>
-
-    <!-- Columna central: título adaptado para calidad del aire -->
-    <h1 class="title">Calidad del Aire - Potosí</h1>
-
-    <!-- Columna derecha: espacio para futuros controles -->
+    <h1 class="title">Calidad del Aire — Suba</h1>
     <div class="right"></div>
   </header>
 
-  <!--
-    BARRA DE NAVEGACIÓN
-    - Menú específico para la sección de calidad del aire
-    - Mantiene el comportamiento hover de tu diseño original
-  -->
-  <nav class="navbar" role="navigation" aria-label="Menú calidad del aire">
+  <!-- Menú -->
+  <nav class="navbar" aria-label="Menú principal">
     <ul class="menu">
-      <li class="menu-item">
-        <a href="#" class="menu-link">Monitoreo</a>
-      </li>
-      <li class="menu-item">
-        <a href="#" class="menu-link">Historial</a>
-      </li>
-      <li class="menu-item">
-        <a href="#" class="menu-link">Alertas</a>
-      </li>
-      <li class="menu-item">
-        <a href="#" class="menu-link">Recomendaciones</a>
-      </li>
-      <li class="menu-item">
-        <a href="index.html" class="menu-link">Volver al Inicio</a>
-      </li>
+      <li class="menu-item"><a href="index.html" class="menu-link">Inicio</a></li>
+      <li class="menu-item"><a href="CalidadAireSuba.html" class="menu-link">Versión General</a></li>
     </ul>
   </nav>
 
-  <!--
-    CONTENIDO PRINCIPAL - SECCIÓN DE CALIDAD DEL AIRE
-    - Layout con panel principal y panel lateral de mapa
-  -->
-  <div class="main-container">
-    <!-- Panel principal con métricas -->
-    <main class="air-quality-section">
-    <!-- Encabezado de la sección -->
-    <div class="section-header">
-      <h2 class="section-title">Monitoreo de Calidad del Aire</h2>
-      <p class="section-subtitle">Datos en tiempo real del barrio Potosí</p>
-      <div class="last-update-info">
-        Última actualización: <span id="last-update">20 de Agosto, 2025 - 14:30</span>
-      </div>
-    </div>
-
-    <!-- Métricas principales de contaminantes -->
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-header">
-          <div class="metric-name">PM2.5</div>
-          <div class="metric-status status-good" id="pm25-status">Bueno</div>
-        </div>
-        <div class="metric-value" id="pm25-value">12</div>
-        <div class="metric-unit">µg/m³</div>
-        <div class="metric-description">
-          Partículas finas menores a 2.5 micrómetros. Nivel recomendado por la OMS: ≤ 15 µg/m³
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-header">
-          <div class="metric-name">PM10</div>
-          <div class="metric-status status-moderate" id="pm10-status">Moderado</div>
-        </div>
-        <div class="metric-value" id="pm10-value">28</div>
-        <div class="metric-unit">µg/m³</div>
-        <div class="metric-description">
-          Partículas menores a 10 micrómetros. Nivel recomendado por la OMS: ≤ 45 µg/m³
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-header">
-          <div class="metric-name">NO₂</div>
-          <div class="metric-status status-good" id="no2-status">Bueno</div>
-        </div>
-        <div class="metric-value" id="no2-value">18</div>
-        <div class="metric-unit">µg/m³</div>
-        <div class="metric-description">
-          Dióxido de nitrógeno, principalmente de vehículos. Nivel recomendado: ≤ 25 µg/m³
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-header">
-          <div class="metric-name">O₃</div>
-          <div class="metric-status status-moderate" id="o3-status">Moderado</div>
-        </div>
-        <div class="metric-value" id="o3-value">85</div>
-        <div class="metric-unit">µg/m³</div>
-        <div class="metric-description">
-          Ozono troposférico. Nivel recomendado por la OMS: ≤ 100 µg/m³ (8h)
-        </div>
-      </div>
-    </div>
-
-    <!-- Gráfico de tendencias (placeholder para futuras implementaciones) -->
-    <div class="air-quality-chart">
-      <h3 class="chart-title">Tendencia de las últimas 24 horas</h3>
-      <div class="chart-container" id="chart-container">
-        <div class="chart-placeholder">
-          📊 Aquí se mostraría un gráfico interactivo con las tendencias de PM2.5, PM10, NO₂ y O₃
-        </div>
-      </div>
-      <div class="chart-footer">
-        * Los datos se actualizan cada hora. Fuente: Red de Monitoreo Ambiental de Bogotá
-      </div>
-    </div>
-
-    <!-- Indicadores meteorológicos en tiempo real -->
-    <div class="realtime-indicators">
-      <div class="indicator">
-        <div class="indicator-icon">🌡️</div>
-        <div class="indicator-label">Temperatura</div>
-        <div class="indicator-value" id="temperature">18°C</div>
-      </div>
-      <div class="indicator">
-        <div class="indicator-icon">💨</div>
-        <div class="indicator-label">Viento</div>
-        <div class="indicator-value" id="wind-speed">12 km/h</div>
-      </div>
-      <div class="indicator">
-        <div class="indicator-icon">💧</div>
-        <div class="indicator-label">Humedad</div>
-        <div class="indicator-value" id="humidity">68%</div>
-      </div>
-      <div class="indicator">
-        <div class="indicator-icon">☁️</div>
-        <div class="indicator-label">Presión</div>
-        <div class="indicator-value" id="pressure">1013 hPa</div>
-      </div>
-    </div>
-
-    <!-- Sección de recomendaciones dinámicas -->
-    <div class="recommendations">
-      <h3 class="recommendations-title">Recomendaciones para hoy</h3>
-      <ul class="recommendation-list" id="recommendation-list">
-        <li class="recommendation-item">
-          <span class="recommendation-icon">✅</span>
-          <span class="recommendation-text">
-            <strong>Actividades al aire libre:</strong> Condiciones favorables para ejercicio y recreación al aire libre.
-          </span>
-        </li>
-        <li class="recommendation-item">
-          <span class="recommendation-icon">⚠️</span>
-          <span class="recommendation-text">
-            <strong>Grupos sensibles:</strong> Personas con asma o problemas respiratorios deben considerar limitar actividades prolongadas al aire libre.
-          </span>
-        </li>
-        <li class="recommendation-item">
-          <span class="recommendation-icon">🏠</span>
-          <span class="recommendation-text">
-            <strong>Ventilación:</strong> Buen momento para ventilar espacios interiores, especialmente en horas de la mañana.
-          </span>
-        </li>
-        <li class="recommendation-item">
-          <span class="recommendation-icon">🚗</span>
-          <span class="recommendation-text">
-            <strong>Transporte:</strong> Considera usar transporte público o medios alternativos para reducir emisiones locales.
-          </span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Información adicional -->
-    <div class="info-section">
-      <div class="info-card">
-        <h4>¿Qué significan estos valores?</h4>
-        <p>Los contaminantes del aire se miden en microgramos por metro cúbico (µg/m³). Los valores mostrados se comparan con los estándares de la Organización Mundial de la Salud (OMS) y las normativas colombianas.</p>
-      </div>
-      <div class="info-card">
-        <h4>Horarios de mayor contaminación</h4>
-        <p>Generalmente, los niveles más altos se presentan entre 6:00-9:00 AM y 5:00-8:00 PM debido al tráfico vehicular. Los fines de semana suelen tener mejores condiciones.</p>
-      </div>
-    </div>
-  </main>
-
-    <!-- Panel lateral derecho - Mapa de estaciones -->
-    <aside class="map-panel">
-      <div class="map-header">
-        <h3 class="map-title">Estaciones de Monitoreo</h3>
-        <div class="map-controls">
-          <button id="refresh-map" class="map-btn" title="Actualizar mapa">🔄</button>
-          <button id="fullscreen-map" class="map-btn" title="Pantalla completa">⛶</button>
-        </div>
-      </div>
-      
-      <!-- Contenedor del mapa -->
-      <div class="map-container" id="air-quality-map">
-        <div class="map-placeholder">
-          🗺️ Cargando mapa de estaciones...
-        </div>
-      </div>
-      
-      <!-- Leyenda del mapa -->
+  <!-- Contenedor principal 50/50 -->
+  <div class="split-container">
+    <!-- Izquierda: mapa -->
+    <section class="left-map-panel">
+      <div id="map" aria-label="Mapa de Suba y estaciones de calidad del aire"></div>
       <div class="map-legend">
-        <h4>Leyenda</h4>
-        <div class="legend-items">
-          <div class="legend-item">
-            <span class="legend-dot good"></span>
-            <span>Bueno (0-50)</span>
+        <span class="dot dot-good"></span> Bueno
+        <span class="dot dot-moderate"></span> Moderado
+        <span class="dot dot-unhealthy"></span> No saludable
+        <span class="dot dot-very-unhealthy"></span> Muy no saludable
+      </div>
+    </section>
+
+    <!-- Derecha: métricas + gráficas -->
+    <aside class="right-data-panel">
+      <section class="metrics">
+        <div class="meta-row">
+          <h2 id="station-title">Seleccione una estación en el mapa</h2>
+          <div class="last-update" id="last-update">—</div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-head">
+              <div class="metric-name">PM2.5</div>
+              <div class="metric-badge" id="pm25-badge">—</div>
+            </div>
+            <div class="metric-value"><span id="pm25-val">—</span> <small>µg/m³</small></div>
+            <div class="metric-desc">Recomendado OMS ≤ 15 µg/m³</div>
           </div>
-          <div class="legend-item">
-            <span class="legend-dot moderate"></span>
-            <span>Moderado (51-100)</span>
+
+          <div class="metric-card">
+            <div class="metric-head">
+              <div class="metric-name">PM10</div>
+              <div class="metric-badge" id="pm10-badge">—</div>
+            </div>
+            <div class="metric-value"><span id="pm10-val">—</span> <small>µg/m³</small></div>
+            <div class="metric-desc">Recomendado OMS ≤ 45 µg/m³</div>
           </div>
-          <div class="legend-item">
-            <span class="legend-dot unhealthy"></span>
-            <span>No saludable (101-150)</span>
+
+          <div class="metric-card">
+            <div class="metric-head">
+              <div class="metric-name">NO₂</div>
+              <div class="metric-badge" id="no2-badge">—</div>
+            </div>
+            <div class="metric-value"><span id="no2-val">—</span> <small>µg/m³</small></div>
+            <div class="metric-desc">Recomendado OMS ≤ 25 µg/m³</div>
           </div>
-          <div class="legend-item">
-            <span class="legend-dot very-unhealthy"></span>
-            <span>Muy no saludable (151+)</span>
+
+          <div class="metric-card">
+            <div class="metric-head">
+              <div class="metric-name">O₃</div>
+              <div class="metric-badge" id="o3-badge">—</div>
+            </div>
+            <div class="metric-value"><span id="o3-val">—</span> <small>µg/m³</small></div>
+            <div class="metric-desc">Recomendado OMS ≤ 100 µg/m³ (8h)</div>
           </div>
         </div>
-      </div>
-      
-      <!-- Lista de estaciones -->
-      <div class="stations-list">
-        <h4>Estaciones Cercanas</h4>
-        <div id="stations-container">
-          <!-- Las estaciones se cargarán dinámicamente -->
-        </div>
-      </div>
+      </section>
+
+      <section class="charts">
+        <h3>Tendencias (últimas 24 h)</h3>
+        <canvas id="chart-pm25" height="180"></canvas>
+        <canvas id="chart-pm10" height="180"></canvas>
+        <canvas id="chart-no2"  height="180"></canvas>
+        <canvas id="chart-o3"   height="180"></canvas>
+      </section>
     </aside>
   </div>
 
-  <!-- Enlace al JavaScript específico para calidad del aire -->
-  <script defer src="./proyectoCA.js"></script>
+  <!-- Lógica principal -->
+  <script defer src="proyectoCASuba.js"></script>
 </body>
 </html>
