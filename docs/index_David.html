@@ -8,19 +8,54 @@
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />  <!-- Estilos globales del sitio -->
+  <link rel="stylesheet" href="estilos.css" />
+  
 
   <!-- Tu CSS -->
   <link rel="stylesheet" href="estilosD.css" />
 </head>
 
 <body>
-  <!-- Banner
-    superior -->
-<div id="banner-imagen">
-  <img src="img/Barrio_Potosi.PNG" alt="Vista del Barrio Potosí">
-  <div id="titulo-barrio">Barrio Potosí</div>
-</div>
+
+<!-- CABECERA PRINCIPAL -->
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
+
+  <!-- MENÚ PRINCIPAL -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="movilidad.html" class="menu-link">Movilidad</a></li>
+          <li class="menu-item"><a href="interes.html" class="menu-link">Sitios de interés</a></li>
+          <li class="menu-item"><a href="troncales.html" class="menu-link">Troncales</a></li>
+          <li class="menu-item"><a href="index_David.html" class="menu-link">Parques</a></li>
+          <li class="menu-item"><a href="vias.html" class="menu-link">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="CalidadAire.html">Calidad del aire</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="ubicacion.html" class="menu-link">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="index2_David.html">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
   <!-- (lo tuyo) -->
   <section class="seccion-mapa">
@@ -34,10 +69,6 @@
       </div>
 
       <div>
-        <p>
-          Este es un mapa interactivo que muestra la ubicación de los parques en el barrio Potosí.
-          Haz clic en los marcadores para ver más información sobre cada parque.
-        </p>
         <!-- Panel fuera del visor, a la derecha -->
         <aside id="sidebar" class="info-box">
          
@@ -54,6 +85,11 @@
 
   <!-- Tu JS (sin cambios) -->
   <script defer src="programaD.js"></script>
+
+  <!-- COPYRIGHT -->
+  <footer class="footer-copy" role="contentinfo">
+    <div>&copy; Copyright. Todos los derechos reservados.</div>
+  </footer>
 </body>
 
 </html>
