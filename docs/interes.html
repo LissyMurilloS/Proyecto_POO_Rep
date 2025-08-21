@@ -13,10 +13,66 @@
 
   <!-- Estilos específicos de sitios de interés -->
   <link rel="stylesheet" href="estilosI.css" />
+  <link rel="stylesheet" href="./estilos.css" />
 </head>
 <body>
-<!-- Sección de texto arriba -->
-<section class="intro-section">
+
+  <header class="topbar" role="banner">
+    <div class="left">
+      <img id="logo" src="./assets/logo_redondo_256.png" alt="Logo Mi Barrio" />
+    </div>
+    <h1 class="title">Mi barrio: Potosí</h1>
+    <div class="right"></div>
+  </header>
+
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li><a href="#">Movilidad</a></li>
+          <li><a href="#">Troncales</a></li>
+          <li><a href="#">Parques</a></li>
+          <li><a href="vias.html">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="#">Por definir</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li><a href="ubicacion.html" class="menu-link-active">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="#">Recorrido virtual</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+
+  
+<!-- Resumen compacto arriba -->
+<!-- Resumen compacto (arriba del mapa) -->
+
+
+
+<!-- Mapa debajo del texto -->
+  <!-- Resumen compacto arriba del mapa (interes) -->
+<section class="intro-summary">
+  <h2>Sitios de Interés — Proximidad en Potosí</h2>
+  <p>Explora el mapa para ver servicios y equipamientos cercanos con buffers de 200–800&nbsp;m.</p>
+</section>
+<div class="map-container">
+    <div id="map"></div>
+  <section class="intro-section">
   <h2>Sitios de Interés: Análisis de Proximidad en el Barrio Potosí, Suba</h2>
   <p>
     Dentro del <strong>barrio Potosí</strong> solo se identificaron <strong>zonas recreativas oficiales</strong> (parques), clasificadas como espacios deportivos y recreativos (<em>DEP-REC</em>) por el <strong>Instituto Distrital de Recreación y Turismo (IDRD)</strong>.
@@ -32,15 +88,19 @@
   </p>
 </section>
 
-  <!-- Mapa debajo del texto -->
-  <div class="map-container">
-    <div id="map"></div>
-  </div>
+
+  <!-- Texto detallado movido debajo del mapa -->
+  
+</div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <!-- Tu JS -->
   <script src="proyectoI.js"></script>
+<footer class="footer-copy" role="contentinfo">
+  <div>&copy; Copyright. Todos los derechos reservados.</div>
+</footer>
+
 </body>
 </html>

@@ -20,6 +20,7 @@
   font-size: 1.3rem;
   font-family: var(--main-font);
   color: var(--title-color);
+
 }
 
 .intro-section h2 {
@@ -79,4 +80,56 @@
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Intro resumen compacto (arriba del mapa) */
+.intro-summary {
+  width: 90%;
+  max-width: 1200px;
+  margin: 24px auto 12px auto;
+  padding: 8px 20px 0 20px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  font-family: var(--main-font);
+  color: var(--title-color);
+}
+.intro-summary h2 {
+  font-size: 1.6rem;
+  margin: 0 0 8px 0;
+  font-weight: 800;
+}
+.intro-summary p {
+  margin: 0 0 10px 0;
+}
+@media (max-width: 640px) {
+  .intro-summary { font-size: 1rem; }
+  .intro-summary h2 { font-size: 1.3rem; }
+}
+
+
+/* Intro resumen compacto (interes) */
+.intro-summary{
+  width: 92%;
+  max-width: 1200px;
+  margin: 14px auto 10px auto;
+  padding: 0 16px;
+  text-align: center;
+  line-height: 1.6;
+  font-family: var(--main-font);
+  color: var(--title-color);
+}
+.intro-summary h2{
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--menu-bg);
+}
+.intro-summary p{
+  margin: 0;
+  font-size: 1.03rem;
+}
+@media (max-width: 640px){
+  .intro-summary h2{ font-size: 1.2rem; }
+  .intro-summary p{ font-size: 1rem; }
 }
