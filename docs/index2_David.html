@@ -3,16 +3,17 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Visor Cesium – Potosí</title>
+  <title>Recorrido 3D — Potosí</title>
 
+  <link rel="stylesheet" href="estilos.css" />
   <!-- Cesium CSS -->
   <link rel="stylesheet" href="https://unpkg.com/cesium@1.132.0/Build/Cesium/Widgets/widgets.css">
-
-  <!-- Fuente para el título -->
+  <link rel="stylesheet" href="estilo2D.css" />
+  <!-- Fuente (por si la usas en otros lados) -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset / base */
+    /* Base */
     html, body {
       height: 100%;
       margin: 0;
@@ -20,56 +21,37 @@
       background: #f0f0f0;
     }
 
-    /* Contenedor principal: imagen arriba + Cesium abajo */
+    /* Contenedor principal */
     #contenedor-vertical {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
       width: 95%;
-      height: calc(100% - 20px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      margin: 12px auto;
       box-sizing: border-box;
     }
 
-    /* Recuadro de la imagen */
-    #recuadro-imagen {
+    /* Descripción compacta */
+    .intro-summary{
       width: 100%;
-      height: 40%;
-      border: 3px solid #000;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      background: #fff;
-      position: relative; /* para posicionar el título dentro */
-    }
-    #recuadro-imagen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;  /* llena sin deformar */
-      display: block;
-    }
-
-    /* Título sobre la imagen */
-    #titulo-barrio {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 120px;       /* ajusta si lo quieres más grande/pequeño */
-      font-weight: bold;
-      color: #ffffff9d;        /* blanco translúcido */
-      pointer-events: none;
-      white-space: nowrap;
+      max-width: 1100px;
+      margin: 6px auto 12px auto;
       text-align: center;
+      line-height: 1.6;
+      color: var(--title-color);
+    }
+    .intro-summary h2{
+      margin: 0 0 6px 0;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--menu-bg);
+    }
+    .intro-summary p{
+      margin: 0;
+      font-size: 1.03rem;
     }
 
-    /* Recuadro del visor Cesium */
-    #recuadro-cesium {
+    /* Visor Cesium */
+    #recuadro-cesium{
       width: 100%;
-      height: 60%;
+      height: 78vh;            /* alto del visor */
       border: 3px solid #000;
       border-radius: 10px;
       overflow: hidden;
@@ -77,54 +59,81 @@
       background: #fff;
       position: relative;
     }
-
-    /* Mantén tu contenedor de Cesium ocupando todo el panel inferior */
-    #cesiumContainer {
+    #cesiumContainer{
       width: 100%;
       height: 100%;
       outline: none;
     }
-
-    /* HUD encima del visor (igual que ya tenías) */
     #hud{
-      position:absolute;
-      top:8px; left:8px;
-      background:rgba(0,0,0,.55);
-      color:#fff;
-      font:12px/1.35 system-ui,-apple-system,Segoe UI,Roboto;
-      padding:6px 8px;
-      border-radius:8px;
-      z-index:10;
+      position: absolute;
+      top: 8px; left: 8px;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      font: 12px/1.35 system-ui,-apple-system, Segoe UI, Roboto;
+      padding: 6px 8px;
+      border-radius: 8px;
+      z-index: 10;
     }
 
-    /* Opcional: si la pantalla es bajita, reparte 50/50 */
-    @media (max-height: 700px) {
-      #recuadro-imagen { height: 50%; }
-      #recuadro-cesium { height: 50%; }
+    @media (max-height:700px){
+      #recuadro-cesium{ height: 85vh; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Layout en dos ventanas -->
-  <div id="contenedor-vertical">
-    <!-- Ventana superior: imagen + título -->
-    <div id="recuadro-imagen">
-      <img src="img/Barrio_Potosi.PNG" alt="Vista del Barrio Potosí">
-      <div id="titulo-barrio">Barrio Potosí</div>
-    </div>
+  <!-- MENÚ PRINCIPAL -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#" class="menu-link">Equipamientos</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="movilidad.html" class="menu-link">Movilidad</a></li>
+          <li class="menu-item"><a href="interes.html" class="menu-link">Sitios de interés</a></li>
+          <li class="menu-item"><a href="troncales.html" class="menu-link">Troncales</a></li>
+          <li class="menu-item"><a href="index_David.html" class="menu-link">Parques</a></li>
+          <li class="menu-item"><a href="vias.html" class="menu-link">Vías</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Problemática</a>
+        <ul class="submenu">
+          <li><a href="CalidadAire.html">Calidad del aire</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Acerca de</a>
+        <ul class="submenu">
+          <li class="menu-item"><a href="ubicacion.html" class="menu-link">Ubicación</a></li>
+          <li><a href="catastro3d.html">Catastro 3D</a></li>
+          <li><a href="index2_David.html" class="menu-link" aria-current="page">Recorrido 3D</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- Ventana inferior: Cesium -->
+  <!-- Descripción + Visor 3D (sin banner) -->
+  <div id="contenedor-vertical">
+    <section class="intro-summary">
+      <h2>Recorrido 3D — Potosí</h2>
+      <p>Explora un paseo virtual por vías y edificaciones del barrio en un visor 3D (Cesium). Usa ←/→ para avanzar y retroceder; presiona <strong>T</strong> para activar el modo automático.</p>
+    </section>
+
     <div id="recuadro-cesium">
       <div id="cesiumContainer"></div>
       <div id="hud">Listo</div>
     </div>
   </div>
 
-  <!-- Tus scripts (sin cambios) -->
+  <!-- Scripts Cesium -->
   <script>window.CESIUM_BASE_URL='https://unpkg.com/cesium@1.132.0/Build/Cesium/';</script>
   <script src="https://unpkg.com/cesium@1.132.0/Build/Cesium/Cesium.js"></script>
   <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
   <script src="./Programa2D.js"></script>
+
+  <!-- COPYRIGHT -->
+  <footer class="footer-copy" role="contentinfo">
+    <div>&copy; Copyright. Todos los derechos reservados.</div>
+  </footer>
 </body>
 </html>

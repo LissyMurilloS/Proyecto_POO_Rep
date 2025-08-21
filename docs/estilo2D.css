@@ -1,5 +1,6 @@
-/* Recorrido virtual - Asociado a Index2_David */
-/* Layout general */
+/* Recorrido virtual - Asociado a index2_David (limpio y alineado al nuevo HTML) */
+
+/* Base (puede heredar de estilos.css, esto solo asegura consistencia local) */
 html, body {
   height: 100%;
   margin: 0;
@@ -7,79 +8,65 @@ html, body {
   background: #f0f0f0;
 }
 
-/* Contenedor vertical */
+/* Contenedor principal */
 #contenedor-vertical {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 95%;
-  height: calc(100% - 20px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin: 12px auto;
   box-sizing: border-box;
 }
 
-/* Recuadro de imagen */
-#recuadro-imagen {
+/* Descripción compacta */
+.intro-summary{
   width: 100%;
-  height: 40%;              /* ocupa 40% arriba */
-  border: 3px solid #000;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  background: white;
-  position: relative;
-}
-
-#recuadro-imagen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Título sobre la imagen */
-#titulo-barrio {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 120px;   /* puedes reducir si es muy grande */
-  font-weight: bold;
-  color: #ffffff9d;
-  pointer-events: none;
-  white-space: nowrap;
+  max-width: 1100px;
+  margin: 6px auto 12px auto;
   text-align: center;
+  line-height: 1.6;
+  color: var(--title-color);
+}
+.intro-summary h2{
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--menu-bg);
+}
+.intro-summary p{
+  margin: 0;
+  font-size: 1.03rem;
 }
 
 /* Recuadro del visor Cesium */
 #recuadro-cesium {
   width: 100%;
-  height: 60%;              /* ocupa 60% abajo */
+  height: 78vh;
   border: 3px solid #000;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  background: white;
+  background: #fff;
   position: relative;
 }
 
+/* Contenedor Cesium ocupa todo el recuadro */
 #cesiumContainer {
   width: 100%;
   height: 100%;
+  outline: none;
 }
 
-/* HUD sigue visible dentro de Cesium */
-#hud {
+/* HUD sobre el visor */
+#hud{
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 8px; left: 8px;
   background: rgba(0,0,0,.55);
   color: #fff;
   font: 12px/1.35 system-ui,-apple-system,Segoe UI,Roboto;
   padding: 6px 8px;
   border-radius: 8px;
   z-index: 10;
+}
+
+/* Pantallas con poca altura */
+@media (max-height:700px){
+  #recuadro-cesium{ height: 85vh; }
 }

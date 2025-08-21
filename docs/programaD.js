@@ -45,12 +45,12 @@ function limpiarInfo() {
 const parques = [
   {
     coords: [4.696923682081576, -74.08265058115799],
-    nombre: 'Parque Central Pontevedra',
+    nombre: 'Parque Central Pontevedra: Ubicado en el corazón del barrio Potosí, este parque ofrece senderos, zonas verdes y mobiliario urbano sencillo. Es un punto de encuentro comunitario muy accesible gracias a su cercanía con la Avenida Boyacá y la estación Ferias de TransMilenio.',
     imagen: img='img/Ppontevedra.jpg'
   },
   {
     coords: [4.6956940082946925, -74.08261839464893],
-    nombre: 'Central Potosí',
+    nombre: 'Central Potosí: Espacio de recreación barrial rodeado de conjuntos residenciales. Cuenta con senderos y áreas verdes, y se distingue por su cercanía al Parque Pontevedra, a la Parroquia Beato Pablo VI y a importantes vías como la Avenida Boyacá, lo que le brinda buena conectividad.',
     imagen: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npH1nJqdBUCy5nZPkNw7am06mSjSwcBxEmMuRdEQZgs69fA-uzay8xGgqU73ao-yk7xmSFBnVWGmL7S-5Q3zSgIK7vDdy4vt8iRD2WevPQORgD9vtUZ3bGX_4wg9LblDX5SAUZf=h1440'
   }
 ];
