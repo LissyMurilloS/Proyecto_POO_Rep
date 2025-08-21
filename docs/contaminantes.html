@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial de Contaminantes - Suba</title>
+  <link rel="stylesheet" href="estilosC.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA INICIAL -->
+  <header class="topbar">
+    <div class="left">
+      <img id="logo" src="assets/logo_redondo_256.png" alt="Logo Estación Suba" />
+    </div>
+    <h1 class="title">Estación de Monitoreo Ambiental - Suba</h1>
+    <div class="right"></div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="#" class="menu-link">Inicio</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Contaminantes</a>
+        <ul class="submenu">
+          <li><a href="#">NO₂</a></li>
+          <li><a href="#">O₃</a></li>
+          <li><a href="#">PM₁₀</a></li>
+          <li><a href="#">PM₂.₅</a></li>
+          <li><a href="#">SO₂</a></li>
+        </ul>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Reportes</a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link">Contacto</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- FRANJA VERDE (opcional: puedes quitarla si sobra) -->
+  <!-- <div class="franja-verde"></div> -->
+
+  <!-- CONTENIDO PRINCIPAL: GRÁFICAS -->
+  <section class="info-interes">
+    <div class="wrap">
+      <h2>Historial de Contaminantes - Estación Suba</h2>
+      <div id="container">
+        <p>Cargando datos...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-copy">
+    &copy; 2025 Monitoreo Ambiental Suba - Todos los derechos reservados
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="proyectoC.js"></script>
+</body>
+</html>

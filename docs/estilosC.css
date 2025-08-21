@@ -1,0 +1,285 @@
+/* =========================================================================
+   estilosC.css — versión adaptada para contaminantes
+   Basado en tu diseño con menú, tipografía Delius y colores verdes.
+   ========================================================================= */
+
+/* Importar la tipografía Delius desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+/* -----------------------
+   VARIABLES GLOBALES
+   ----------------------- */
+:root {
+  --menu-h: 64px;
+  --logo-h: 96px;
+  --menu-bg: #0d8d82;
+  --menu-bg-hover: #09b1a3c5;
+  --text-on-menu: #ffffff;
+  --page-bg: #ffffff;
+  --inicio-bg: #f3ebe9;
+  --border: #e5e7eb;
+  --title-color: #0f172a;
+  --title-size: 50px;
+  --main-font: "Delius", cursive;
+}
+
+/* -----------------------
+   RESET / BASE
+   ----------------------- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  font-family: var(--main-font);
+  color: var(--title-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -----------------------
+   CABECERA (SECCIÓN INICIAL)
+   ----------------------- */
+header.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: calc(var(--menu-h) * 2);
+  padding: 0 16px;
+  background: var(--inicio-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar .left,
+.topbar .right {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+#logo {
+  height: var(--logo-h);
+  max-height: calc(var(--menu-h) * 1.8);
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.topbar .left { justify-content: flex-start; }
+
+.title {
+  grid-column: 2;
+  margin: 0;
+  text-align: center;
+  font-size: var(--title-size);
+  font-weight: 800;
+  color: var(--title-color);
+}
+
+/* -----------------------
+   BARRA DE NAVEGACIÓN
+   ----------------------- */
+.navbar {
+  height: var(--menu-h);
+  background: var(--menu-bg);
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+}
+
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0 12px;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  justify-content: center;
+  gap: 0;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  color: var(--text-on-menu);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-link:hover {
+  background: var(--menu-bg-hover);
+}
+
+/* -----------------------
+   SUBMENÚS
+   ----------------------- */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--menu-bg);
+  min-width: 200px;
+  margin: 6px 0 0 0;
+  padding: 6px 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.submenu li { list-style: none; }
+
+.submenu a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--text-on-menu);
+  text-decoration: none;
+}
+
+.submenu a:hover {
+  background: var(--menu-bg-hover);
+}
+
+.menu-item:hover > .submenu {
+  display: block;
+}
+
+/* -----------------------
+   SECCIÓN HERO / IMAGEN
+   ----------------------- */
+.barrio-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.barrio-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(32px, 8vw, 96px);
+  color: rgba(255,255,255,0.4);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* -----------------------
+   FRANJA VERDE Y SECCIÓN DE INFORMACIÓN
+   ----------------------- */
+.franja-verde {
+  width: 100%;
+  height: calc(var(--menu-h) / 2);
+  background: rgba(13, 141, 130, 0.8);
+}
+
+.info-interes {
+  width: 100%;
+  background: var(--inicio-bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 16px;
+}
+
+.info-interes .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.info-interes h2 {
+  margin: 0 0 18px 0;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--title-color);
+  text-align: center;
+}
+
+/* -----------------------
+   CONTENEDOR DE GRÁFICAS
+   ----------------------- */
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.chart-container h2 {
+  margin-bottom: 0.5rem;
+  color: #0d8d82;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-bottom: 2px solid #e0f7f4;
+  padding-bottom: 0.5rem;
+}
+
+.chart-description {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+/* -----------------------
+   FOOTER
+   ----------------------- */
+.footer-copy {
+  width: 100%;
+  height: var(--menu-h);
+  background: var(--menu-bg);
+  color: var(--text-on-menu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-top: 1px solid var(--border);
+}
+
+/* -----------------------
+   RESPONSIVE
+   ----------------------- */
+@media (max-width: 768px) {
+  :root { --menu-h: 56px; }
+  :root { --logo-h: 72px; }
+  .title { font-size: 20px; }
+  .menu { justify-content: center; }
+  .menu-link { padding: 0 12px; }
+}
+
+@media (max-width: 480px) {
+  :root { --menu-h: 48px; }
+  :root { --logo-h: 56px; }
+  .title { font-size: 18px; }
+}
